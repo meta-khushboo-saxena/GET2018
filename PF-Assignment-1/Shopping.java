@@ -41,7 +41,8 @@ public class Shopping {
 		int i=0;
 		for(Cart product:list)
 		{  
-		    System.out.println(i+++""+" "+product.item+" "+product.price+" "+product.quantity);  
+		    System.out.println("Product Index:- "+i+++"\nProduct name:- "+product.item+"\nProduct Price:- "+product.price+"\nProduct Quantity:- "+product.quantity);
+		    System.out.println(); 
 		}
 	}
 	
