@@ -103,12 +103,13 @@ public class Shopping {
 	 * @return totalAmount      
 	 */
 	
-	int generateCartBill(String promocode){
+	double generateCartBill(String promocode){
 		
 	   Date date=new Date();
 	  
  	   Iterator<Cart> iterator= list.iterator(); 
- 	   int i=0,totalAmount=0;
+ 	   int i=0;
+	   double totalAmount=0;
  	   while(iterator.hasNext()){
  		
  		Cart product = (Cart)list.get(i);
@@ -184,7 +185,7 @@ public class Shopping {
 				case 5:{
 					System.out.println("Enter the Promocode to get the discount : ");
 					promocode=sc.next();
-					int totalAmountInCart = sh.generateCartBill(promocode);
+					double totalAmountInCart = sh.generateCartBill(promocode);
 					System.out.println("Total Amount of Cart is : "+totalAmountInCart);
 					break;
 				}	
