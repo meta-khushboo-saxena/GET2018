@@ -18,11 +18,11 @@ public class FirstComeFirstServe {
 	public void completionTime(int process[][], int ct[], int n) {
 		int j = 1, i;
 
-		ct[0] = process[0][1];
+		ct[0] = process[0][1] + process[0][0];
 		System.out.println("CT[0]:" + ct[0]);
 		for (i = 1; i < n; i++) {
 
-			if (process[i - 1][j] > process[i][j - 1]) {
+			if (ct[i-1] > process[i][j - 1]) {
 				ct[i] = ct[i - 1] + process[i][j];
 
 			} else {
@@ -87,6 +87,26 @@ public class FirstComeFirstServe {
 		}
 
 		return max;
+	}
+	
+	/**
+	 * Function for sorting burst time of processes
+	 */
+	public void sort(int arr[][]) {
+		
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i][0] > arr[j][0]) {
+					int temp = arr[i][1];
+					int temp2 = arr[i][0];
+					arr[i][1] = arr[j][1];
+					arr[i][0] = arr[j][0];
+					arr[j][1] = temp;
+					arr[j][0] = temp2;
+				}
+			}
+		}
+		
 	}
 
 }
