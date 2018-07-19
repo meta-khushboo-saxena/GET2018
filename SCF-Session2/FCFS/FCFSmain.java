@@ -32,7 +32,17 @@ public class FCFSmain {
 			}
 			System.out.println();
 		}
-
+		
+		fcfs.sort(process);
+		System.out.println("After Sorting");
+		System.out.println("AT" + "\t" + "BT");
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < 2; j++) {
+				System.out.print(process[i][j] + "\t");
+			}
+			System.out.println();
+		}
+		
 		System.out.println("Completion time for each processes are:");
 		fcfs.completionTime(process, ct, n);
 
