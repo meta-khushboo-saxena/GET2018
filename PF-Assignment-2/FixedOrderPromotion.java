@@ -3,54 +3,61 @@ package Shoppingcartdetail;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class FixedOrderPromotion implements Promotion{
-	
+public class FixedOrderPromotion implements Promotion {
+
 	private int discount;
-    private int minPrice;
-    PromotionEnum promotionenum = new PromotionEnum();
-    
-    public void setFixedDiscount(int discount) {
+	private int minPrice;
+
+	public void setFixedDiscount(int discount) {
 		this.discount = discount;
 	}
 
 	public void setMinimumPrice(int minPrice) {
-	    this.minPrice = minPrice;	
+		this.minPrice = minPrice;
 	}
-	
+
 	public int getFixedDiscount() {
-	return this.discount;
+		return this.discount;
 	}
 
 	public int getMinimumPrice() {
-	 return this.minPrice;	
+		return this.minPrice;
 	}
 
-	public boolean isPromotionApplicable(String code,Date currentDate) {
-		
+	public boolean isPromotionApplicable(String code) {
+
+		Date date = new Date();
+
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		long start = 0;
 		long end = 0;
 		long current = 0;
-		
-		  try{
-	             Date startDate = (Date) simpleDateFormat.parse(promotionenum.StartDate);
-	             Date endDate = (Date) simpleDateFormat.parse(promotionenum.EndDate);
-	
-	             start = startDate.getTime();
-                 end = endDate.getTime();
-                 current = currentDate.getTime();
-	
-	            }catch(Exception e){
-		         e.printStackTrace();
-	            }
-		  
-		if(promotionenum.FixedOrderPromotionCode.equals(code) && current < end && current > start)
-		{
-			//System.out.println("Promocode applied on order");
-			return true;
+
+		for (PromotionEnum promo : PromotionEnum.values()) {
+
+			try {
+				Date startDate = (Date) simpleDateFormat.parse(promo
+						.getStartDate());
+				Date endDate = (Date) simpleDateFormat
+						.parse(promo.getEndDate());
+
+				start = startDate.getTime();
+				end = endDate.getTime();
+				current = date.getTime();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			if (promo.getCode().equals(code) && current < end
+					&& current > start) {
+				System.out.println("Promocode Applied on order");
+				return true;
+			}
+
 		}
-		
-		return false;	
-		
+
+		return false;
+
 	}
 }
