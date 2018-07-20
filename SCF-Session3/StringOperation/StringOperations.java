@@ -13,17 +13,18 @@ public class StringOperations {
 	 * @return 1 if same else 0
 	 */
 	int compareStrings(String string1, String string2) {
+		int flag = 0;
 		if (string1.length() == string2.length()) {
 			for (int i = 0; i < string1.length(); i++) {
-				if (string1.charAt(i) == string2.charAt(i)) {
-					continue;
-				} else {
-					return 0;
+				if (string1.charAt(i) != string2.charAt(i)) {
+					flag = 1;
 				}
 			}
-			return 1;
 		}
-		return 0;
+		if (flag == 1) {
+			return 0;
+		}
+		return 1;
 	}
 
 	/**
