@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class Area {
 
-	/*
+	static Scanner sc = new Scanner(System.in);
+	/**
 	 * Function to calculate area of Triangle
 	 * 
 	 * @param height,base
@@ -16,7 +17,7 @@ public class Area {
 		return area;
 	}
 
-	/*
+	/**
 	 * Function to calculate area of Rectangle
 	 * 
 	 * @param width,height
@@ -28,7 +29,7 @@ public class Area {
 		return area;
 	}
 
-	/*
+	/**
 	 * Function to calculate area of Circle
 	 * 
 	 * @param radius
@@ -40,7 +41,7 @@ public class Area {
 		return area;
 	}
 
-	/*
+	/**
 	 * Function to calculate area of Square
 	 * 
 	 * @param sides
@@ -54,7 +55,7 @@ public class Area {
 
 	public static void main(String args[]) {
 		int choice = 0;
-		Scanner sc = new Scanner(System.in);
+		
 		Area area = new Area();
 
 		do {
@@ -70,14 +71,14 @@ public class Area {
 
 				switch (choice) {
 				case 1: {
-					int base, height;
+					double base, height;
 					System.out.println("Enter Base : ");
-					base = sc.nextInt();
+					base = sc.nextDouble();
 					if (base <= 0) {
 						throw new ArithmeticException();
 					}
 					System.out.println("Enter Height : ");
-					height = sc.nextInt();
+					height = sc.nextDouble();
 					if (height <= 0) {
 						throw new ArithmeticException();
 					}
@@ -86,14 +87,14 @@ public class Area {
 					break;
 				}
 				case 2: {
-					int width, height;
+					double width, height;
 					System.out.println("Enter Width : ");
-					width = sc.nextInt();
+					width = sc.nextDouble();
 					if (width <= 0) {
 						throw new ArithmeticException();
 					}
 					System.out.println("Enter Height : ");
-					height = sc.nextInt();
+					height = sc.nextDouble();
 					if (height <= 0) {
 						throw new ArithmeticException();
 					}
@@ -102,9 +103,9 @@ public class Area {
 					break;
 				}
 				case 3: {
-					int radius;
+					double radius;
 					System.out.println("Enter Radius : ");
-					radius = sc.nextInt();
+					radius = sc.nextDouble();
 					if (radius <= 0) {
 						throw new ArithmeticException();
 					}
@@ -113,9 +114,9 @@ public class Area {
 					break;
 				}
 				case 4: {
-					int sides;
+					double sides;
 					System.out.println("Enter Side : ");
-					sides = sc.nextInt();
+					sides = sc.nextDouble();
 					if (sides <= 0) {
 						throw new ArithmeticException();
 					}
@@ -133,13 +134,13 @@ public class Area {
 				}
 			} catch (ArithmeticException e) {
 				System.out.println("Input cannot be negative or Zero");
-				continue;
+				
 
 			} catch (Exception e1) {
 				System.out.println("Enter valid Input Please");
-				continue;
+				
 			}
-			sc.close();
+			
 		} while (true);
 
 	}
