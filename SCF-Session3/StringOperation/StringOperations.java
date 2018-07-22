@@ -1,6 +1,6 @@
 package StringOperation;
 
-/*
+/**
  * contain function to perform various operations on string
  */
 public class StringOperations {
