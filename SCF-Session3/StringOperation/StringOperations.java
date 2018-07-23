@@ -12,19 +12,18 @@ public class StringOperations {
 	 *            ,string2
 	 * @return 1 if same else 0
 	 */
-	int compareStrings(String string1, String string2) {
-		int flag = 0;
+	boolean compareStrings(String string1, String string2) {
+		boolean flag = false;
 		if (string1.length() == string2.length()) {
 			for (int i = 0; i < string1.length(); i++) {
 				if (string1.charAt(i) != string2.charAt(i)) {
-					flag = 1;
+					flag = false;
+				} else {
+					flag = true;
 				}
 			}
 		}
-		if (flag == 1) {
-			return 0;
-		}
-		return 1;
+		return flag;
 	}
 
 	/**
@@ -78,19 +77,22 @@ public class StringOperations {
 		String longestString = "";
 		int i = 0, length = 0, max = 0, startindex = 0, endindex = 0;
 		while (i < string.length()) {
-			length++;
-			if (string.charAt(i) == ' ') {
+
+			if (string.charAt(i) == ' ' || i == string.length() - 1) {
 				if (max < length) {
-					max = length - 1;
+					max = length;
 					startindex = i - max;
 				}
 				length = 0;
 			}
+
+			length++;
 			i++;
+
 		}
 		endindex = startindex + max;
 
-		for (i = startindex; i < endindex; i++) {
+		for (i = startindex; i < endindex + 1; i++) {
 			longestString += string.charAt(i);
 		}
 		return longestString;
