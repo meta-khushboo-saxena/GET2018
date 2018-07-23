@@ -24,5 +24,12 @@ public class N_QueenTest {
 						{ 0, 0, 0, 0, 0, 0, 0, 0 } }, 0, 8);
 		assertEquals(true, result);
 	}
+	
+	@Test
+	public void test3() {
+		boolean result = nqueen.funcOperation(new int[][] { { 0, 0, 0},
+				{ 0, 0, 0 }, { 0, 0, 0 } }, 0, 3);
+		assertNotEquals(true, result);
+	}
 
 }
