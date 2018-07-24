@@ -61,7 +61,7 @@ public class ArrayOperations {
 		checkEmpty(array);
 		int count = 0, max = 0;
 		int i, j, k = 0;
-		for (i = 0; i < array.length - 1; i++) {
+		for (i = 0; i < array.length; i++) {
 
 			for (k = i, j = array.length - 1; k < array.length && j >= 0; j--) {
 				if (array[k] == array[j]) {
@@ -88,24 +88,21 @@ public class ArrayOperations {
 	 * @param array
 	 * @return count: adjacent elements
 	 */
+
 	public int clumps(int[] array) {
-		checkEmpty(array);
-		int count = 0, var;
-		for (int i = 0; i < array.length - 1; i++) {
-			if (array[i] == array[i + 1]) {
-				var = array[i];
+	checkEmpty(array);
+	int count = 0, index=0;
+	for (int i = 0; i < array.length - 1; i++) {
+		if (array[i] == array[i + 1]) {
+			if(index==i){
 				count++;
-				for (int j = i + 2; j < array.length - 1; j++) {
-					if (array[j] != var) {
-						break;
-					} else {
-						i = j;
-					}
-				}
 			}
+		}else{
+			index=i+1;
 		}
-		return count;
 	}
+	return count;
+}
 
 	/**
 	 * function for rearranging the array such that every x is immediately
