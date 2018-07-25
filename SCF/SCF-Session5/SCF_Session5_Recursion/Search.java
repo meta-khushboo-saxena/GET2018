@@ -49,7 +49,7 @@ public class Search {
 	 * @return index if the element is found else return -1
 	 */
 	public int linearSearch(int array[], int index, int lastIndex, int value) {
-		if (index < lastIndex) {
+		if (index <= lastIndex) {
 			if (array[index] == value) {
 				return index;
 			} else {
