@@ -11,7 +11,7 @@ public class LCMnHCF {
 	 * @param number1
 	 * @return HCF:highest common factor of number1 and number2
 	 */
-	int HCF(int number1,int number2) {
+	int HCF(int number1, int number2) {
 		if (number1 == number2) {
 			return number1;
 		} else if (number1 > number2) {
@@ -30,9 +30,7 @@ public class LCMnHCF {
 
 	int LCM(int number1, int number2) {
 		int lcm;
-
-		lcm=(number1*number2)/HCF(number1,number2);
-
+		lcm = (number1 * number2) / HCF(number1, number2);
 		return lcm;
 	}
 
