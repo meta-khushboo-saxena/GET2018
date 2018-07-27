@@ -123,7 +123,6 @@ public final class SparseMatrix {
 			transposeMatrix[i][1] = temp;
 			k++;
 		}
-
 		return transposeMatrix;
 	}
 
@@ -355,7 +354,7 @@ public final class SparseMatrix {
 
 		System.out.println("After Transpose:");
 
-		int transpose[][] = matrix2.transpose();
+		int transpose[][] = matrix4.transpose();
 		for (int i = 0; i < transpose.length; i++) {
 			for (int j = 0; j < transpose[0].length; j++) {
 				System.out.print(transpose[i][j] + "\t");
