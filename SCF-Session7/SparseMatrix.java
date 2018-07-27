@@ -116,11 +116,12 @@ public final class SparseMatrix {
 	public int[][] transpose() {
 		int temp;
 		int transposeMatrix[][] = this.getDeepCopy(matrixArray);
-
+		int k = 0;
 		for (int i = 0; i < transposeMatrix.length; i++) {
 			temp = transposeMatrix[i][0];
 			transposeMatrix[i][0] = transposeMatrix[i][1];
 			transposeMatrix[i][1] = temp;
+			k++;
 		}
 
 		return transposeMatrix;
@@ -144,7 +145,7 @@ public final class SparseMatrix {
 		for (int i = 0; i < transpose.length; i++) {
 			if (matrix[i][0] != transpose[i][0]
 					&& matrix[i][1] != transpose[i][1]) {
-				flag =false;
+				flag = false;
 			}
 		}
 		return flag;
@@ -217,12 +218,16 @@ public final class SparseMatrix {
 			j++;
 			k++;
 		}
-		int additionNew[][] = new int[k][matrixArray[0].length];
 
+		int additionNew[][] = new int[this.row][this.column];
+
+		for (i = 0; i < this.row; i++) {
+			for (j = 0; j < this.column; j++) {
+				additionNew[i][j] = 0;
+			}
+		}
 		for (i = 0; i < k; i++) {
-			additionNew[i][0] = addition[i][0];
-			additionNew[i][1] = addition[i][1];
-			additionNew[i][2] = addition[i][2];
+			additionNew[addition[i][0]][addition[i][1]] = addition[i][2];
 		}
 		return additionNew;
 	}
@@ -238,7 +243,7 @@ public final class SparseMatrix {
 		int matrix[][] = matrix2.matrixArray;
 		int multiply[][] = new int[this.matrixArray.length
 				* matrix2.matrixArray.length][3];
-		if (matrixArray.length != matrix2.matrixArray[0].length) {
+		if (this.column != matrix2.row) {
 
 			throw new AssertionError("Invalid matrix for multiplication!!");
 
@@ -301,25 +306,30 @@ public final class SparseMatrix {
 				// jump to next row
 				i++;
 		}
-		int multiplication[][] = new int[k][matrixArray[0].length];
 
+		int multiplication[][] = new int[this.row][matrix2.column];
+
+		for (i = 0; i < this.row; i++) {
+			for (j = 0; j < matrix2.column; j++) {
+				multiplication[i][j] = 0;
+			}
+		}
 		for (i = 0; i < k; i++) {
-			multiplication[i][0] = multiply[i][0];
-			multiplication[i][1] = multiply[i][1];
-			multiplication[i][2] = multiply[i][2];
+			multiplication[multiply[i][0]][multiply[i][1]] = multiply[i][2];
 		}
 		return multiplication;
 	}
 
 	public static void main(String args[]) {
-		SparseMatrix matrix1 = new SparseMatrix(new int[][] { { 0, 2, 0 },
-				{ 1, 0, 2 } });
+
+		SparseMatrix matrix1 = new SparseMatrix(new int[][] { { 1, 0, 0 },
+				{ 1, 2, 0 }, { 0, 0, 3 } });
 		SparseMatrix matrix2 = new SparseMatrix(new int[][] { { 2, 0 },
-				{ 4, 0 }, { 5, 0 } });
-		SparseMatrix matrix3 = new SparseMatrix(new int[][] { { 1, 0 },
-				{ 0, 1 } });
-		SparseMatrix matrix4 = new SparseMatrix(new int[][] { { 2, 0 },
-				{ 0, 0 } });
+				{ 1, 0 }, { 0, 3 } });
+		SparseMatrix matrix3 = new SparseMatrix(new int[][] { { 0, 0, 2 },
+				{ 4, 0, 3 }, { 0, 2, 0 } });
+		SparseMatrix matrix4 = new SparseMatrix(new int[][] { { 0, 2, 0 },
+				{ 1, 1, 0 }, { 0, 0, 0 } });
 		SparseMatrix matrix5 = new SparseMatrix(new int[][] { { 0, 2 },
 				{ 2, 0 } });
 
@@ -327,9 +337,9 @@ public final class SparseMatrix {
 
 		int addition[][] = matrix3.add(matrix4);
 		for (int i = 0; i < addition.length; i++) {
-			System.out.print(addition[i][0]);
-			System.out.print("\t" + addition[i][1]);
-			System.out.print("\t" + addition[i][2]);
+			for (int j = 0; j < addition[0].length; j++) {
+				System.out.print(addition[i][j] + "\t");
+			}
 			System.out.println();
 		}
 
@@ -337,9 +347,9 @@ public final class SparseMatrix {
 
 		int multiplication[][] = matrix1.multiply(matrix2);
 		for (int i = 0; i < multiplication.length; i++) {
-			System.out.print(multiplication[i][0]);
-			System.out.print("\t" + multiplication[i][1]);
-			System.out.print("\t" + multiplication[i][2]);
+			for (int j = 0; j < multiplication[0].length; j++) {
+				System.out.print(multiplication[i][j] + "\t");
+			}
 			System.out.println();
 		}
 
@@ -347,9 +357,9 @@ public final class SparseMatrix {
 
 		int transpose[][] = matrix2.transpose();
 		for (int i = 0; i < transpose.length; i++) {
-			System.out.print(transpose[i][0]);
-			System.out.print("\t" + transpose[i][1]);
-			System.out.print("\t" + transpose[i][2]);
+			for (int j = 0; j < transpose[0].length; j++) {
+				System.out.print(transpose[i][j] + "\t");
+			}
 			System.out.println();
 		}
 
