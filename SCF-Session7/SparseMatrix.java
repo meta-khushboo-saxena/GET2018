@@ -1,4 +1,4 @@
-package SCF_Session7;
+package SCF_Session7_Invariant;
 
 public final class SparseMatrix {
 
@@ -25,11 +25,9 @@ public final class SparseMatrix {
                     this.matrixArray[k][0] = i;
                     this.matrixArray[k][1] = j;
                     this.matrixArray[k][2] = sparseMatrix[i][j];
-                    System.out.println();
                     k++;
                 }
             }
-            System.out.println();
         }
     }
 
@@ -127,12 +125,6 @@ public final class SparseMatrix {
             transposeMatrix[i][1] = temp;
         }
         
-        for (int i = 0; i < matrixArray.length; i++) {
-            System.out.print(transposeMatrix[i][0]);
-            System.out.print("\t" + transposeMatrix[i][1]);
-            System.out.print("\t" + transposeMatrix[i][2]);
-            System.out.println();
-        }
         return transposeMatrix;
     }
 
@@ -168,13 +160,18 @@ public final class SparseMatrix {
      */
     public int[][] add(SparseMatrix matrix2) {
 
+    	//If matrix is not a square matrix
         if (!this.checkForSquareMatrix(matrix2)) {
             throw new AssertionError("Not a square matrtix for addition");
         }
+        
         int i = 0, j = 0, k = 0;
         int addition[][] = new int[this.matrixArray.length
                 + matrix2.matrixArray.length][matrixArray[0].length];
+        
         while (i < this.matrixArray.length && j < matrix2.matrixArray.length) {
+        	
+        	//If matrix2 rows and column are smaller
             if (matrixArray[i][0] > matrix2.matrixArray[j][0]
                     || ((this.matrixArray[i][0] == matrix2.matrixArray[j][0]) && (this.matrixArray[i][1] > matrix2.matrixArray[j][1]))) {
 
@@ -183,7 +180,9 @@ public final class SparseMatrix {
                 addition[k][2] = matrix2.matrixArray[j][2];
                 j++;
                 k++;
-            } else if (matrixArray[i][0] < matrix2.matrixArray[j][0]
+            } 
+            // If matrix2 rows and column are greater
+            else if (matrixArray[i][0] < matrix2.matrixArray[j][0]
                     || ((this.matrixArray[i][0] == matrix2.matrixArray[j][0]) && (this.matrixArray[i][1] < matrix2.matrixArray[j][1]))) {
 
                 addition[k][0] = this.matrixArray[i][0];
@@ -191,7 +190,9 @@ public final class SparseMatrix {
                 addition[k][2] = this.matrixArray[i][2];
                 i++;
                 k++;
-            } else {
+            } 
+            //  if the rows and column are same add the values
+            else {
                 addition[k][0] = this.matrixArray[i][0];
                 addition[k][1] = this.matrixArray[i][1];
                 addition[k][2] = this.matrixArray[i][2]
@@ -202,6 +203,7 @@ public final class SparseMatrix {
             }
 
         }
+        // Insert remaining elements of matrixArray
         while (i < this.matrixArray.length) {
             addition[k][0] = this.matrixArray[i][0];
             addition[k][1] = this.matrixArray[i][1];
@@ -209,10 +211,11 @@ public final class SparseMatrix {
             i++;
             k++;
         }
+        //Insert remaining elements of matrix2
         while (j < matrix2.matrixArray.length) {
-            addition[k][0] = this.matrixArray[j][0];
-            addition[k][1] = this.matrixArray[j][1];
-            addition[k][2] = this.matrixArray[j][2];
+            addition[k][0] = matrix2.matrixArray[j][0];
+            addition[k][1] = matrix2.matrixArray[j][1];
+            addition[k][2] = matrix2.matrixArray[j][2];
             j++;
             k++;
         }
@@ -222,10 +225,6 @@ public final class SparseMatrix {
             additionNew[i][0] = addition[i][0];
             additionNew[i][1] = addition[i][1];
             additionNew[i][2] = addition[i][2];
-            System.out.print(additionNew[i][0]);
-            System.out.print("\t" + additionNew[i][1]);
-            System.out.print("\t" + additionNew[i][2]);
-            System.out.println();
         }
         return additionNew;
     }
@@ -240,7 +239,7 @@ public final class SparseMatrix {
         int k = 0;
         int matrix[][] = matrix2.matrixArray;
         int multiply[][] = new int[this.matrixArray.length
-                + matrix2.matrixArray.length][3];
+                * matrix2.matrixArray.length][3];
         if (matrixArray.length != matrix2.matrixArray[0].length) {
 
             throw new AssertionError("Invalid matrix for multiplication!!");
@@ -257,31 +256,31 @@ public final class SparseMatrix {
                 // temporary pointers created to add all
                 // multiplied values to obtain current
                 // element of result matrix
-                int tempa = i;
-                int tempb = j;
+                int tempIndex1 = i;
+                int tempIndex2 = j;
 
                 int sum = 0;
 
                 // iterate over all elements with
                 // same row and col value
                 // to calculate result
-                while (tempa < matrixArray.length
-                        && matrixArray[tempa][0] == row
-                        && tempb < matrix.length && matrix[tempb][0] == column) {
+                while (tempIndex1 < matrixArray.length
+                        && matrixArray[tempIndex1][0] == row
+                        && tempIndex2 < matrix.length && matrix[tempIndex2][0] == column) {
 
-                    if (matrixArray[tempa][1] < matrix[tempb][1])
+                    if (matrixArray[tempIndex1][1] < matrix[tempIndex2][1])
 
-                        // skip a
-                        tempa++;
+                        // skip Index1
+                        tempIndex1++;
 
-                    else if (matrixArray[tempa][1] > matrix[tempb][1])
+                    else if (matrixArray[tempIndex1][1] > matrix[tempIndex2][1])
 
-                        // skip b
-                        tempb++;
+                        // skip Index2
+                        tempIndex2++;
                     else
 
-                        // same col, so multiply and increment
-                        sum += matrixArray[tempa++][2] * matrix[tempb++][2];
+                        // same column, so multiply and increment
+                        sum += matrixArray[tempIndex1++][2] * matrix[tempIndex2++][2];
                 }
                 if (sum != 0) {
                     // if sum is not 0 then insert it in the matrix
@@ -289,10 +288,6 @@ public final class SparseMatrix {
                     multiply[k][0] = row;
                     multiply[k][1] = column;
                     multiply[k][2] = sum;
-                    System.out.print(multiply[k][0]);
-                    System.out.print("\t" + multiply[k][1]);
-                    System.out.print("\t" + multiply[k][2]);
-                    System.out.println();
                     k++;
                 }
 
@@ -306,7 +301,14 @@ public final class SparseMatrix {
                 // jump to next row
                 i++;
         }
-        return multiply;
+        int multiplication[][] = new int[k][matrixArray[0].length];
+
+        for (i = 0; i < k; i++) {
+        	multiplication[i][0] = multiply[i][0];
+        	multiplication[i][1] = multiply[i][1];
+        	multiplication[i][2] = multiply[i][2];
+        }
+        return multiplication;
     }
 
     public static void main(String args[]) {
@@ -322,15 +324,36 @@ public final class SparseMatrix {
                 { 2, 0 } });
 
         System.out.println("After Addition:");
-        matrix3.add(matrix4);
+        
+        int addition[][]=matrix3.add(matrix4);
+        for (int i = 0; i < addition.length; i++) {
+            System.out.print(addition[i][0]);
+            System.out.print("\t" + addition[i][1]);
+            System.out.print("\t" + addition[i][2]);
+            System.out.println();
+        }
         
         System.out.println("After Multiplication:");
-        matrix1.multiply(matrix2);
+       
+        int multiplication[][]= matrix1.multiply(matrix2);
+        for (int i = 0; i < multiplication.length; i++) {
+            System.out.print(multiplication[i][0]);
+            System.out.print("\t" + multiplication[i][1]);
+            System.out.print("\t" + multiplication[i][2]);
+            System.out.println();
+        }
         
         System.out.println("After Transpose:");
-        matrix2.transpose();
         
-        System.out.println(matrix2.checkSymmetrical());
+        int transpose[][]=matrix2.transpose();
+        for (int i = 0; i < transpose.length; i++) {
+            System.out.print(transpose[i][0]);
+            System.out.print("\t" + transpose[i][1]);
+            System.out.print("\t" + transpose[i][2]);
+            System.out.println();
+        }
+        
+        System.out.println(matrix5.checkSymmetrical());
 
     }
 }
