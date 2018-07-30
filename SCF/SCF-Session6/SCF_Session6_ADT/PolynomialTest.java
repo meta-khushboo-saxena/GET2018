@@ -1,4 +1,4 @@
-package SCF_Session6;
+package SCF_Session6_ADT;
 
 import static org.junit.Assert.*;
 
@@ -41,6 +41,17 @@ public class PolynomialTest {
                 { 5, 2 } });
         int result[][] = polydefault.add(poly1, poly2);
         int expected[][] = { { 2, 0 }, { 7, 1 }, { 7, 2 } };
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testAdd3() {
+
+        Polynomial poly1 = new Polynomial(new int[][] { { 1, 4 }, { 1, 5 } });
+        Polynomial poly2 = new Polynomial(new int[][] { { 1, 0 }, { 1, 2 },
+                { 1, 3 } });
+        int result[][] = polydefault.add(poly1, poly2);
+        int expected[][] = { { 1,0 }, { 1,2 }, { 1,3 },{ 1,4 },{ 1,5 } };
         assertArrayEquals(expected, result);
     }
 
