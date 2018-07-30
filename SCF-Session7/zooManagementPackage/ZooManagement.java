@@ -7,8 +7,6 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
-import birdPackage.Bird;
 import birdPackage.Parrot;
 import birdPackage.Peacock;
 import reptilePackage.Crocodile;
