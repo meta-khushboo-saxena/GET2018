@@ -6,14 +6,16 @@ public class Triangle implements Shapes {
 
     private int xCoordinate;
     private int yCoordinate;
-    private int height;
-    private int base;
+    private int side1;
+    private int side2;
+    private int side3;
     private Date date;
     final private String shape = "TRIANGLE";
 
-    public Triangle(int height, int base, Point point) {
-        this.height = height;
-        this.base = base;
+    public Triangle(int side1, int side2, int side3, Point point) {
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
         this.xCoordinate = point.getXCoordinate();
         this.yCoordinate = point.getYCoordinate();
         this.date = new Date();
@@ -28,12 +30,16 @@ public class Triangle implements Shapes {
         return yCoordinate;
     }
 
-    public int getLength() {
-        return height;
+    public int getSide1() {
+        return side1;
     }
 
-    public int getWidth() {
-        return base;
+    public int getSide2() {
+        return side2;
+    }
+
+    public int getSide3() {
+        return side3;
     }
 
     public Date getDate() {
@@ -44,12 +50,16 @@ public class Triangle implements Shapes {
 
     public float getArea() {
         float area;
-        area = (float) Math.sqrt(3) / 4 * this.height * this.base;
+        float intermediatePerimeter = this.getPerimeter() / 2;
+        area = (float) Math.sqrt(intermediatePerimeter
+                * (intermediatePerimeter - side1)
+                * (intermediatePerimeter - side2)
+                * (intermediatePerimeter - side3));
         return area;
     }
 
     public float getPerimeter() {
-        float perimeter = 0;
+        float perimeter = side1 + side2 + side3;
         return perimeter;
     }
 
