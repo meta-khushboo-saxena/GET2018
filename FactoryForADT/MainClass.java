@@ -19,7 +19,7 @@ public class MainClass {
 	public Point setCoordinates() {
 		while (true) {
 			System.out
-					.println("Set point for Square on screen (X and Y) Coordinates : ");
+					.println("Set point for Square on screen (X and Y) Coordinates : (Between 0 and 500)");
 			xCoordinate = scanner.nextInt();
 			point.setXCoordinate(xCoordinate);
 			yCoordinate = scanner.nextInt();
@@ -66,11 +66,19 @@ public class MainClass {
 
 				switch (choice) {
 				case 1: {
-					System.out.println("Enter the side of square");
-					side = scanner.nextInt();
-					integerList.add(0, side);
 					point = main.setCoordinates();
-
+					while (true) {
+						System.out.println("Enter the side of square");
+						side = scanner.nextInt();
+						integerList.add(0, side);
+						if (side + point.getXCoordinate() > point.xMaxCoordinate
+								|| side + point.getYCoordinate() > point.yMaxCoordinate) {
+							System.out
+									.println("Size of square is greater than screen!!Enter again \n");
+						} else {
+							break;
+						}
+					}
 					// Setting the size , x-coordinate and y-coordinate of
 					// square
 					Shapes shapeSquare = ShapeFactory.shapeType(
@@ -80,14 +88,24 @@ public class MainClass {
 					break;
 				}
 				case 2: {
-					System.out.println("Enter the length of rectangle");
-					length = scanner.nextInt();
-					integerList.add(0, length);
-					System.out.println("Enter the width of rectangle");
-					width = scanner.nextInt();
-					integerList.add(1, width);
 					point = main.setCoordinates();
+					while (true) {
+						System.out.println("Enter the length of rectangle");
+						length = scanner.nextInt();
+						integerList.add(0, length);
+						System.out.println("Enter the width of rectangle");
+						width = scanner.nextInt();
+						integerList.add(1, width);
 
+						if (length + point.getYCoordinate() > point.yMaxCoordinate
+								|| width + point.getXCoordinate() > point.xMaxCoordinate) {
+							System.out
+									.println("Size of rectangle is greater than screen!!Enter again \n");
+						} else {
+							break;
+						}
+					}
+					
 					// Setting the size , x-coordinate and y-coordinate of
 					// square
 					Shapes shapeRectangle = ShapeFactory.shapeType(
@@ -97,21 +115,22 @@ public class MainClass {
 					break;
 				}
 				case 3: {
-					System.out.println("Enter the side1 of triangle");
-					side1 = scanner.nextInt();
-					integerList.add(0, side1);
-
-					System.out.println("Enter the side2 of triangle");
-					side2 = scanner.nextInt();
-					integerList.add(1, side2);
-
-					System.out.println("Enter the side3 of triangle");
-					side3 = scanner.nextInt();
-					integerList.add(2, side3);
-
 					point = main.setCoordinates();
+			
+						System.out.println("Enter the side1 of triangle");
+						side1 = scanner.nextInt();
+						integerList.add(0, side1);
 
-					// Setting the height, base , x-coordinate and y-coordinate
+						System.out.println("Enter the side2 of triangle");
+						side2 = scanner.nextInt();
+						integerList.add(1, side2);
+
+						System.out.println("Enter the side3 of triangle");
+						side3 = scanner.nextInt();
+						integerList.add(2, side3);
+
+
+					// Setting the sides, x-coordinate and y-coordinate
 					// of square
 					Shapes shapeTriangle = ShapeFactory.shapeType(
 							ShapeTypeEnum.TRIANGLE.name(), point, integerList);
@@ -120,12 +139,21 @@ public class MainClass {
 					break;
 				}
 				case 4: {
+					point = main.setCoordinates();
+					while(true){
 					System.out.println("Enter the radius of Circle");
 					radius = scanner.nextInt();
 					integerList.add(0, radius);
 
-					point = main.setCoordinates();
-
+					if (radius + point.getYCoordinate() > point.yMaxCoordinate
+							|| radius + point.getXCoordinate() > point.xMaxCoordinate) {
+						System.out
+								.println("Size of circle is greater than screen!!Enter again \n");
+					} else {
+						break;
+					}
+				}
+				
 					// Setting the radius , x-coordinate and y-coordinate of
 					// square
 					Shapes shapeCircle = ShapeFactory.shapeType(
@@ -144,7 +172,6 @@ public class MainClass {
 				}
 				case 7: {
 					screen.sortUsingPerimeter();
-					;
 					break;
 				}
 				case 8: {
