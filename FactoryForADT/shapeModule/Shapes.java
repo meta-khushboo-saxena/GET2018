@@ -4,10 +4,15 @@ import java.util.Date;
 
 public interface Shapes {
 
-	float getArea();
-	float getPerimeter();
-	String getOrigin();
-	String getShape();
-	boolean isEnclosed(Point point);
-	Date getDate();
+	public double getArea();
+
+	public double getPerimeter();
+
+	public String getOrigin();
+
+	public String getShape();
+
+	public boolean isEnclosed(Point point);
+
+	public Date getDate();
 }
