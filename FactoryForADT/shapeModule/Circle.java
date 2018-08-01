@@ -36,13 +36,13 @@ public class Circle implements Shapes {
 
     // Getter End
 
-    public float getArea() {
+    public double getArea() {
         float area;
         area = this.radius * this.radius;
         return area;
     }
 
-    public float getPerimeter() {
+    public double getPerimeter() {
         float perimeter;
         perimeter = 4 * this.radius;
         return perimeter;
