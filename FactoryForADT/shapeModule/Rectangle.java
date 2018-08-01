@@ -43,13 +43,13 @@ public class Rectangle implements Shapes {
 
 	// Getter End
 
-	public float getArea() {
+	public double getArea() {
 		float area;
 		area = this.length * this.width;
 		return area;
 	}
 
-	public float getPerimeter() {
+	public double getPerimeter() {
 		float perimeter;
 		perimeter = 2 * this.length * this.width;
 		return perimeter;
