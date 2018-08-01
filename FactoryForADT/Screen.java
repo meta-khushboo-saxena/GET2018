@@ -9,7 +9,7 @@ public class Screen {
 
 	List<Shapes> shapeList = new ArrayList<Shapes>();
 	Point point = new Point();
-	MainClass main=new MainClass();
+	MainClass main = new MainClass();
 
 	/**
 	 * Function to add shape to screen
@@ -61,8 +61,14 @@ public class Screen {
 
 	/**
 	 * Function to remove all the shapes from the screen
+	 * 
+	 * @throws Exception
 	 */
-	public void removeAllShapes() {
+	public void removeAllShapes() throws Exception {
+		if (shapeList.size() == 0) {
+			System.out.println("No Shape present in the screen !!\n");
+			throw new Exception("No data in the List");
+		}
 		shapeList.removeAll(shapeList);
 		System.out.println("All Shape Removed from screen!!");
 	}
@@ -88,7 +94,7 @@ public class Screen {
 		}
 		displayShapes(listOfSortedShapes);
 	}
-	
+
 	/**
 	 * Function to sort shapes in ascending order according to perimeter
 	 * 
@@ -110,7 +116,7 @@ public class Screen {
 		}
 		displayShapes(listOfSortedShapes);
 	}
-	
+
 	/**
 	 * Function to sort shapes in ascending order according to TimeStamp
 	 * 
@@ -122,8 +128,8 @@ public class Screen {
 		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
 		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
 			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
-				if (listOfSortedShapes.get(j).getDate().after( listOfSortedShapes
-						.get(j + 1).getDate()) ) {
+				if (listOfSortedShapes.get(j).getDate()
+						.after(listOfSortedShapes.get(j + 1).getDate())) {
 					Shapes shape = listOfSortedShapes.get(j);
 					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
 					listOfSortedShapes.set(j + 1, shape);
@@ -144,7 +150,7 @@ public class Screen {
 		}
 		point = main.setCoordinates();
 		Iterator<Shapes> iterator = shapeList.iterator();
-		
+
 		System.out.println("Shape containing the point are:\n");
 		while (iterator.hasNext()) {
 
