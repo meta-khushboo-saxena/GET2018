@@ -38,7 +38,6 @@ public class MainClass {
 		return point;
 	}
 
-
 	public static void main(String arg[]) {
 		int side, length, width, side1, side2, side3, radius;
 
@@ -54,11 +53,13 @@ public class MainClass {
 				System.out.println("3. Add Triangle");
 				System.out.println("4. Add Circle");
 				System.out.println("5. Display Shapes");
-				System.out.println("6. Display Shapes in Ascending Order");
-				System.out.println("7. Display Shapes enclosing a point");
-				System.out.println("8. Remove");
-				System.out.println("9. Remove all");
-				System.out.println("10. Exit");
+				System.out.println("6. Display Shapes according to Area");
+				System.out.println("7. Display Shapes according to Perimeter");
+				System.out.println("8. Display Shapes according to TimeStamp");
+				System.out.println("9. Display Shapes enclosing a point");
+				System.out.println("10. Remove");
+				System.out.println("11. Remove all");
+				System.out.println("12. Exit");
 
 				System.out.println("Enter your choice");
 				choice = scanner.nextInt();
@@ -69,6 +70,7 @@ public class MainClass {
 					side = scanner.nextInt();
 					integerList.add(0, side);
 					point = main.setCoordinates();
+
 					// Setting the size , x-coordinate and y-coordinate of
 					// square
 					Shapes shapeSquare = ShapeFactory.shapeType(
@@ -133,23 +135,29 @@ public class MainClass {
 					break;
 				}
 				case 5: {
-					screen.displayShapes();
+					screen.displayShapes(screen.shapeList);
 					break;
 				}
 				case 6: {
-					String display[] = screen.displayinAscending();
-					for (int i = 0; i < display.length; i++) {
-						System.out.println(display[i]);
-					}
+					screen.sortUsingArea();
 					break;
 				}
 				case 7: {
+					screen.sortUsingPerimeter();
+					;
+					break;
+				}
+				case 8: {
+					screen.sortUsingTimeStamp();
+					break;
+				}
+				case 9: {
 					point = main.setCoordinates();
 					screen.displayEnclosedShape(point);
 					break;
 				}
-				case 8: {
-					screen.displayShapes();
+				case 10: {
+					screen.displayShapes(screen.shapeList);
 					scanner.nextLine();
 					System.out
 							.println("Enter the index which you wanna delete:");
@@ -157,11 +165,11 @@ public class MainClass {
 					screen.removeShapes(index);
 					break;
 				}
-				case 9: {
+				case 11: {
 					screen.removeAllShapes();
 					break;
 				}
-				case 10: {
+				case 12: {
 					System.exit(0);
 					break;
 				}
