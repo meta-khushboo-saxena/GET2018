@@ -37,13 +37,13 @@ public class Square implements Shapes {
 
 	// Getter End
 
-	public float getArea() {
+	public double getArea() {
 		float area;
 		area = this.side * this.side;
 		return area;
 	}
 
-	public float getPerimeter() {
+	public double getPerimeter() {
 		float perimeter;
 		perimeter = 4 * this.side;
 		return perimeter;
