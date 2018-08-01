@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,8 +11,6 @@ import shapeModule.Shapes;
 public class Screen {
 
 	List<Shapes> shapeList = new ArrayList<Shapes>();
-	Point point = new Point();
-	MainClass main = new MainClass();
 
 	/**
 	 * Function to add shape to screen
@@ -30,21 +31,21 @@ public class Screen {
 		int i = 0;
 		if (listOfShapes.size() == 0) {
 			System.out.println("No Shape present in the screen !!\n");
-			throw new Exception("No data in the List");
-		}
+		} else {
 
-		Iterator<Shapes> iterator = listOfShapes.iterator();
-		while (iterator.hasNext()) {
-			Shapes shapes = listOfShapes.get(i);
-			System.out.println("Index: " + i);
-			System.out.println("Shape: " + shapes.getShape());
-			System.out.println("Area: " + shapes.getArea());
-			System.out.println("Perimeter: " + shapes.getPerimeter());
-			System.out.println("Origin: " + shapes.getOrigin());
-			System.out.println("Date: " + shapes.getDate());
-			System.out.println();
-			i++;
-			iterator.next();
+			Iterator<Shapes> iterator = listOfShapes.iterator();
+			while (iterator.hasNext()) {
+				Shapes shapes = listOfShapes.get(i);
+				System.out.println("Index: " + i);
+				System.out.println("Shape: " + shapes.getShape());
+				System.out.println("Area: " + shapes.getArea());
+				System.out.println("Perimeter: " + shapes.getPerimeter());
+				System.out.println("Origin: " + shapes.getOrigin());
+				System.out.println("Date: " + shapes.getDate());
+				System.out.println();
+				i++;
+				iterator.next();
+			}
 		}
 	}
 
@@ -67,10 +68,10 @@ public class Screen {
 	public void removeAllShapes() throws Exception {
 		if (shapeList.size() == 0) {
 			System.out.println("No Shape present in the screen !!\n");
-			throw new Exception("No data in the List");
+		} else {
+			shapeList.removeAll(shapeList);
+			System.out.println("All Shape Removed from screen!!");
 		}
-		shapeList.removeAll(shapeList);
-		System.out.println("All Shape Removed from screen!!");
 	}
 
 	/**
@@ -80,18 +81,18 @@ public class Screen {
 	 * @throws Exception
 	 */
 	public void sortUsingArea() throws Exception {
-
 		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
-		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
-			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
-				if (listOfSortedShapes.get(j).getArea() > listOfSortedShapes
-						.get(j + 1).getArea()) {
-					Shapes shape = listOfSortedShapes.get(j);
-					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
-					listOfSortedShapes.set(j + 1, shape);
-				}
+		Comparator<Shapes> compareArea = new Comparator<Shapes>() {
+
+			public int compare(Shapes shape1, Shapes shape2) {
+				float area1 = shape1.getArea();
+				float area2 = shape2.getArea();
+
+				// sort in ascending order
+				return (int) (area1 - area2);
 			}
-		}
+		};
+		Collections.sort(listOfSortedShapes, compareArea);
 		displayShapes(listOfSortedShapes);
 	}
 
@@ -102,18 +103,18 @@ public class Screen {
 	 * @throws Exception
 	 */
 	public void sortUsingPerimeter() throws Exception {
-
 		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
-		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
-			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
-				if (listOfSortedShapes.get(j).getPerimeter() > listOfSortedShapes
-						.get(j + 1).getPerimeter()) {
-					Shapes shape = listOfSortedShapes.get(j);
-					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
-					listOfSortedShapes.set(j + 1, shape);
-				}
+		Comparator<Shapes> comparePerimeter = new Comparator<Shapes>() {
+
+			public int compare(Shapes shape1, Shapes shape2) {
+				float perimeter1 = shape1.getPerimeter();
+				float perimeter2 = shape2.getPerimeter();
+
+				// sort in ascending order
+				return (int) (perimeter1 - perimeter2);
 			}
-		}
+		};
+		Collections.sort(listOfSortedShapes, comparePerimeter);
 		displayShapes(listOfSortedShapes);
 	}
 
@@ -124,33 +125,27 @@ public class Screen {
 	 * @throws Exception
 	 */
 	public void sortUsingTimeStamp() throws Exception {
-
 		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
-		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
-			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
-				if (listOfSortedShapes.get(j).getDate()
-						.after(listOfSortedShapes.get(j + 1).getDate())) {
-					Shapes shape = listOfSortedShapes.get(j);
-					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
-					listOfSortedShapes.set(j + 1, shape);
-				}
+		Comparator<Shapes> compareTime = new Comparator<Shapes>() {
+
+			public int compare(Shapes shape1, Shapes shape2) {
+				Date date1 = shape1.getDate();
+				Date date2 = shape2.getDate();
+
+				// sort in ascending order
+				return date1.compareTo(date2);
 			}
-		}
+		};
+		Collections.sort(listOfSortedShapes, compareTime);
 		displayShapes(listOfSortedShapes);
 	}
 
 	/**
 	 * Function to remove all the shapes from the screen
 	 */
-	public void displayEnclosedShape() throws Exception {
+	public void displayEnclosedShape(Point point) throws Exception {
 		int i = 0;
-		if (shapeList.size() == 0) {
-			System.out.println("No Shape present in the screen !!\n");
-			throw new Exception("No data in the List");
-		}
-		point = main.setCoordinates();
 		Iterator<Shapes> iterator = shapeList.iterator();
-
 		System.out.println("Shape containing the point are:\n");
 		while (iterator.hasNext()) {
 
