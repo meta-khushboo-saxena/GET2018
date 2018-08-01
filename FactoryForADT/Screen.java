@@ -9,6 +9,7 @@ public class Screen {
 
 	List<Shapes> shapeList = new ArrayList<Shapes>();
 	Point point = new Point();
+	MainClass main=new MainClass();
 
 	/**
 	 * Function to add shape to screen
@@ -17,7 +18,7 @@ public class Screen {
 	 */
 	public void addShape(Shapes shapes) {
 		shapeList.add(shapes);
-		System.out.println("Shape Added!!");
+		System.out.println("Shape Added!!\n");
 	}
 
 	/**
@@ -28,7 +29,7 @@ public class Screen {
 	public void displayShapes(List<Shapes> listOfShapes) throws Exception {
 		int i = 0;
 		if (listOfShapes.size() == 0) {
-			System.out.println("No Shape present in the screen !!");
+			System.out.println("No Shape present in the screen !!\n");
 			throw new Exception("No data in the List");
 		}
 
@@ -135,14 +136,16 @@ public class Screen {
 	/**
 	 * Function to remove all the shapes from the screen
 	 */
-	public void displayEnclosedShape(Point point) throws Exception {
+	public void displayEnclosedShape() throws Exception {
 		int i = 0;
 		if (shapeList.size() == 0) {
-			System.out.println("No Shape present in the screen !!");
+			System.out.println("No Shape present in the screen !!\n");
 			throw new Exception("No data in the List");
 		}
-
+		point = main.setCoordinates();
 		Iterator<Shapes> iterator = shapeList.iterator();
+		
+		System.out.println("Shape containing the point are:\n");
 		while (iterator.hasNext()) {
 
 			Shapes shapes = shapeList.get(i);
