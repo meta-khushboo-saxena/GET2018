@@ -152,8 +152,7 @@ public class MainClass {
 					break;
 				}
 				case 9: {
-					point = main.setCoordinates();
-					screen.displayEnclosedShape(point);
+					screen.displayEnclosedShape();
 					break;
 				}
 				case 10: {
@@ -173,6 +172,8 @@ public class MainClass {
 					System.exit(0);
 					break;
 				}
+				default:
+					System.out.println("Invalid Choice!!\n");
 				}
 
 			} catch (Exception e) {
