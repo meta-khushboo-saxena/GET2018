@@ -25,16 +25,16 @@ public class Screen {
 	 * 
 	 * @throws Exception
 	 */
-	public void displayShapes() throws Exception {
+	public void displayShapes(List<Shapes> listOfShapes) throws Exception {
 		int i = 0;
-		if (shapeList.size() == 0) {
+		if (listOfShapes.size() == 0) {
 			System.out.println("No Shape present in the screen !!");
 			throw new Exception("No data in the List");
 		}
 
-		Iterator<Shapes> iterator = shapeList.iterator();
+		Iterator<Shapes> iterator = listOfShapes.iterator();
 		while (iterator.hasNext()) {
-			Shapes shapes = shapeList.get(i);
+			Shapes shapes = listOfShapes.get(i);
 			System.out.println("Index: " + i);
 			System.out.println("Shape: " + shapes.getShape());
 			System.out.println("Area: " + shapes.getArea());
@@ -67,39 +67,69 @@ public class Screen {
 	}
 
 	/**
-	 * Function to display shapes in ascending order according to area of shapes
+	 * Function to sort shapes in ascending order according to area
 	 * 
 	 * @return name of shapes
 	 * @throws Exception
 	 */
-	public String[] displayinAscending() throws Exception {
+	public void sortUsingArea() throws Exception {
 
-		String shapeNames[] = new String[shapeList.size()];
-
-		for (int i = 0; i < shapeNames.length; i++) {
-			shapeNames[i] = shapeList.get(i).getShape();
-		}
-		if (shapeList.size() == 0) {
-			System.out.println("No Shape present in the screen !!");
-			throw new Exception("No data in the List");
-		}
-		int i = 0;
-		while (i < shapeList.size()) {
-			int j = 0;
-			while (j < (shapeList.size() - 1) - i) {
-
-				if (shapeList.get(j).getArea() > shapeList.get(j + 1).getArea()) {
-
-					String temporary = shapeNames[j];
-					shapeNames[j] = shapeNames[j + 1];
-					shapeNames[j + 1] = temporary;
-
+		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
+		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
+			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
+				if (listOfSortedShapes.get(j).getArea() > listOfSortedShapes
+						.get(j + 1).getArea()) {
+					Shapes shape = listOfSortedShapes.get(j);
+					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
+					listOfSortedShapes.set(j + 1, shape);
 				}
-				j++;
 			}
-			i++;
 		}
-		return shapeNames;
+		displayShapes(listOfSortedShapes);
+	}
+	
+	/**
+	 * Function to sort shapes in ascending order according to perimeter
+	 * 
+	 * @return name of shapes
+	 * @throws Exception
+	 */
+	public void sortUsingPerimeter() throws Exception {
+
+		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
+		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
+			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
+				if (listOfSortedShapes.get(j).getPerimeter() > listOfSortedShapes
+						.get(j + 1).getPerimeter()) {
+					Shapes shape = listOfSortedShapes.get(j);
+					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
+					listOfSortedShapes.set(j + 1, shape);
+				}
+			}
+		}
+		displayShapes(listOfSortedShapes);
+	}
+	
+	/**
+	 * Function to sort shapes in ascending order according to TimeStamp
+	 * 
+	 * @return name of shapes
+	 * @throws Exception
+	 */
+	public void sortUsingTimeStamp() throws Exception {
+
+		List<Shapes> listOfSortedShapes = new ArrayList<Shapes>(shapeList);
+		for (int i = 0; i < (listOfSortedShapes.size() - 1); i++) {
+			for (int j = 0; j < (listOfSortedShapes.size() - i - 1); j++) {
+				if (listOfSortedShapes.get(j).getDate().after( listOfSortedShapes
+						.get(j + 1).getDate()) ) {
+					Shapes shape = listOfSortedShapes.get(j);
+					listOfSortedShapes.set(j, listOfSortedShapes.get(j + 1));
+					listOfSortedShapes.set(j + 1, shape);
+				}
+			}
+		}
+		displayShapes(listOfSortedShapes);
 	}
 
 	/**
