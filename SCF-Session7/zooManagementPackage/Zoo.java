@@ -1,16 +1,16 @@
-package zooManagementPackage;
+package controlAndAccessModule;
 
-import interfacesPackage.Animal;
-import interfacesPackage.Zone;
+import interfacesModule.Animal;
+import interfacesModule.Zone;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import zonePackage.BirdZone;
-import zonePackage.MammalZone;
-import zonePackage.ReptileZone;
+import zoneModule.BirdZone;
+import zoneModule.MammalZone;
+import zoneModule.ReptileZone;
 
 //Class for Zoo
 public class Zoo {
@@ -18,9 +18,20 @@ public class Zoo {
 	public List<Zone> zoneList = new ArrayList<Zone>();
 	public List<Cage> listOfCage = new ArrayList<Cage>();
 	public List<Animal> listOfAnimal = new ArrayList<Animal>();
-
 	Scanner sc = new Scanner(System.in);
 
+	public int check() {
+		int value = 0;
+
+		// Loop until user inputs non integer values or negative values
+		while (!sc.hasNextInt() || (sc.hasNextInt() && (value = sc.nextInt()) <= 0)) {
+			System.out.print("Enter Positive Integer !!\n");
+			if (!sc.hasNextInt())
+				sc.next();
+		}
+		return value;
+	}
+	
 	/**
 	 * Function to add ZONE to zoo
 	 * 
@@ -34,7 +45,7 @@ public class Zoo {
 
 		zone.setId(zoneId);
 		System.out.println("ENTER CAPACITY OF ZONE : ");
-		int capacity = sc.nextInt();
+		int capacity = check();
 
 		zone.setZoneCapacity(capacity);
 		zone.setSpareCapacity(capacity);
