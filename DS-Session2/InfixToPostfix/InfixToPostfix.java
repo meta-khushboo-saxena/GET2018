@@ -66,40 +66,47 @@ public class InfixToPostfix {
 	 * @return precedence in form of int
 	 */
 	public int checkPrecedence(String operator) {
-
+		int priority = 0;
 		switch (operator) {
 		case "(":
 		case ")":
 		case "[":
 		case "]":
-			return 7;
+			priority = 7;
+			break;
 
 		case "*":
 		case "/":
 		case "%":
-			return 1;
+			priority = 1;
+			break;
 
 		case "+":
 		case "-":
-			return 2;
+			priority = 2;
+			break;
 
 		case "<":
 		case ">":
 		case "<=":
 		case ">=":
-			return 3;
+			priority = 3;
+			break;
 
 		case "==":
 		case "!=":
-			return 4;
+			priority = 4;
+			break;
 
 		case "&&":
-			return 5;
+			priority = 5;
+			break;
 		case "||":
-			return 6;
+			priority = 6;
+			break;
 		}
 
-		return 0;
+		return priority;
 	}
 
 	/**
