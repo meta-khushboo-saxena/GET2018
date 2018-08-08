@@ -3,7 +3,9 @@ package VirtualCommandPrompt;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+* Class to create the root directory
+*/
 public class Node {
 
 	private List<Node> childDirectory = new ArrayList<Node>();
