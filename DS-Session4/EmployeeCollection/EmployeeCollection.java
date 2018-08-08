@@ -43,12 +43,11 @@ public class EmployeeCollection {
 	 * @return true when added
 	 */
 	public boolean addEmployee(String name, int id, String address) {
-		int uniqueId = id;
 		if ((employeeList).stream().anyMatch(employee -> employee.getId() == id)) {
 			System.out.println("!!Employee already Added!!");
 			return false;
 		} else {
-			Employee employee = new Employee(name, uniqueId, address);
+			Employee employee = new Employee(name, id, address);
 			employeeList.add(employee);
 		}
 		return true;
