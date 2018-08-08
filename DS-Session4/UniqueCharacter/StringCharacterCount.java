@@ -19,8 +19,7 @@ class StringCharacterCount {
 	 */
 	public int getCharacterCount(String data) {
 
-		// if the previously string is encountered then returned the stored
-		// result
+		// if the previously string is encountered then returned the stored result
 		if (stringMap.containsKey(data)) {
 			return stringMap.get(data);
 		}
