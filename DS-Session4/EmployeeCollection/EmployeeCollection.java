@@ -17,9 +17,12 @@ public class EmployeeCollection {
 	 * @return
 	 */
 	public List<Employee> naturalSorting() {
-
-		Collections.sort(employeeList,
-				(Employee employee1, Employee employee2) -> employee1.getId() - employee2.getId());
+		if (this.employeeList.size() == 0) {
+			System.out.println("!!No data to sort!!");
+		} else {
+			Collections.sort(this.employeeList,
+					(Employee employee1, Employee employee2) -> employee1.getId() - employee2.getId());
+		}
 		return employeeList;
 	}
 
@@ -29,8 +32,12 @@ public class EmployeeCollection {
 	 * @return
 	 */
 	public List<Employee> sotingByName() {
-		Collections.sort(employeeList,
-				(Employee employee1, Employee employee2) -> employee1.getName().compareTo(employee2.getName()));
+		if (this.employeeList.size() == 0) {
+			System.out.println("!!No data to sort!!");
+		} else {
+			Collections.sort(this.employeeList,
+					(Employee employee1, Employee employee2) -> employee1.getName().compareTo(employee2.getName()));
+		}
 		return employeeList;
 	}
 
@@ -43,7 +50,8 @@ public class EmployeeCollection {
 	 * @return true when added
 	 */
 	public boolean addEmployee(String name, int id, String address) {
-		if ((employeeList).stream().anyMatch(employee -> employee.getId() == id)) {
+
+		if ((this.employeeList).stream().anyMatch(employee -> employee.getId() == id)) {
 			System.out.println("!!Employee already Added!!");
 			return false;
 		} else {
@@ -60,7 +68,9 @@ public class EmployeeCollection {
 	 */
 	public static void main(String arg[]) {
 		EmployeeCollection employee = new EmployeeCollection();
-		employee.addEmployee("khushboo", 23, "sdsfd");
-		employee.addEmployee("dfsd", 23, "sdsfd");
+		employee.naturalSorting();
+		employee.sotingByName();
+		employee.addEmployee("khushboo", 23, "Aligarh");
+		employee.addEmployee("Ananya", 23, "Jaipur");
 	}
 }
