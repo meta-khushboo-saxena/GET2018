@@ -13,7 +13,7 @@ public interface Dictionary {
 
 	public String getValue(String key);
 
-	public List<KeyValuePair> sortInorder();
+	public List<KeyValuePair> sortDictionary();
 
 	public List<KeyValuePair> sortDictionaryInRange(String key1, String key2);
 }
