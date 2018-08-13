@@ -156,22 +156,22 @@ public class GraphCreate implements Graph {
 
 		List<EdgeAndVertices> minSpanningtree;
 
-		// Array to store constructed MST
+		// Array to store constructed Minimum Spanning Tree
 		int parent[] = new int[numberOfVertices];
 
 		// Key values used to pick minimum weight edge
 		int key[] = new int[numberOfVertices];
 
-		// To represent set of vertices not yet included in MST
+		// To represent set of vertices not yet included in Minimum Spanning
+		// Tree
 		Boolean mstSet[] = new Boolean[numberOfVertices];
 
 		// Initialize all keys as INFINITE
 		for (int i = 0; i < numberOfVertices; i++) {
 			key[i] = Integer.MAX_VALUE;
-			mstSet[i] = false;
 		}
 
-		// Always include first 1st vertex in MST.
+		// Always include first vertex in MST.
 		key[0] = 0;
 		parent[0] = -1;
 
@@ -180,28 +180,28 @@ public class GraphCreate implements Graph {
 
 			// Pick the minimum key vertex from the set of vertices
 			// not yet included in MST
-			int u = minKey(key, mstSet);
+			int vertex1 = minKey(key, mstSet);
 
 			// Add the picked vertex to the MST Set
-			mstSet[u] = true;
+			mstSet[vertex1] = true;
 
-			edges = listOfEdges[u];
+			edges = listOfEdges[vertex1];
 
 			// Update key value and parent index of the adjacent
 			// vertices of the picked vertex
-			for (int v = 0; v < numberOfVertices; v++) {
+			for (int vertex2 = 0; vertex2 < numberOfVertices; vertex2++) {
 
 				for (EdgeAndVertices listEdges : edges) {
 
-					if (listEdges.getVertex2() == v) {
+					if (listEdges.getVertex2() == vertex2) {
 
-						// Update the key only if weight(u,v) is smaller than
-						// key[v]
-						if (listEdges.getWeight() != 0 && !mstSet[v]
-								&& listEdges.getWeight() < key[v]) {
+						// Update the key only if weight(vertex1,vertex2) is
+						// smaller than
+						// key[vertex2]
+						if (listEdges.getWeight() != 0 && !mstSet[vertex2] && listEdges.getWeight() < key[vertex2]) {
 
-							parent[v] = u;
-							key[v] = listEdges.getWeight();
+							parent[vertex2] = vertex1;
+							key[vertex2] = listEdges.getWeight();
 
 						}
 					}
@@ -218,8 +218,7 @@ public class GraphCreate implements Graph {
 
 				if (edgeConnected.getVertex2() == parent[i]) {
 
-					edge = new EdgeAndVertices(parent[i], i,
-							edgeConnected.getWeight());
+					edge = new EdgeAndVertices(parent[i], i, edgeConnected.getWeight());
 
 					minSpanningtree.add(edge);
 				}
@@ -228,7 +227,7 @@ public class GraphCreate implements Graph {
 
 		return minSpanningtree;
 	}
-
+	
 	/**
 	 * Function to find the shortest path between two vertices
 	 */
