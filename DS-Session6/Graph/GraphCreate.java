@@ -236,41 +236,36 @@ public class GraphCreate implements Graph {
 	public List<EdgeAndVertices> shortestPath(int vertex1, int vertex2) {
 		List<EdgeAndVertices> shortestPath;
 		int distance[] = new int[numberOfVertices];
-		Boolean sptSet[] = new Boolean[numberOfVertices];
+		Boolean isProcessed[] = new Boolean[numberOfVertices];
 
-		// Initialize all distances as INFINITE and stpSet[] as false
+		// Initialize all distances as INFINITE
 		for (int i = 0; i < numberOfVertices; i++) {
 			distance[i] = Integer.MAX_VALUE;
-			sptSet[i] = false;
+			isProcessed[i] = false;
 		}
 
 		// Distance of source vertex from itself is always 0
 		distance[vertex1] = 0;
 
-		// Find shortest path for all vertices
+		// to find shortest path for all vertices
 		for (int count = 0; count < numberOfVertices - 1; count++) {
-			// Pick the minimum distance vertex from the set of vertices
-			// not yet processed
-			int minVertex1 = minKey(distance, sptSet);
+			// Pick the minimum distance vertex not yet processed
+			int minVertex1 = minKey(distance, isProcessed);
 
 			// Mark the picked vertex as processed
-			sptSet[minVertex1] = true;
+			isProcessed[minVertex1] = true;
 
 			edges = listOfEdges[minVertex1];
 			// Update distance value of the adjacent vertices of the
 			// picked vertex.
 			for (int adjacentVertex = 0; adjacentVertex < numberOfVertices; adjacentVertex++)
 
-				// Update distance[adjacentVertex] only if is not in sptSet, there is an
-				// edge from u to v, and total weight of path from src to
-				// v through u is smaller than current value of
-				// distance[adjacentVertex]
-
+				// Update distance[adjacentVertex] only if is not in isProcessed[]
 				for (EdgeAndVertices listEdges : edges) {
 					// getting weight connected with vertex
 					if (listEdges.getVertex2() == adjacentVertex) {
 
-						if (!sptSet[adjacentVertex]
+						if (!isProcessed[adjacentVertex]
 								&& listEdges.getWeight() != 0
 								&& distance[minVertex1] != Integer.MAX_VALUE
 								&& distance[minVertex1] + listEdges.getWeight() < distance[adjacentVertex]) {
