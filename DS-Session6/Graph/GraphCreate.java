@@ -256,7 +256,7 @@ public class GraphCreate implements Graph {
 			edges = listOfEdges[minVertex1];
 			// Update distance value of the adjacent vertices of the
 			// picked vertex.
-			for (int adjacentVertex = 0; adjacentVertex < numberOfVertices; adjacentVertex++)
+			for (int adjacentVertex = 0; adjacentVertex < numberOfVertices; adjacentVertex++){
 
 				// Update distance[adjacentVertex] only if is not in isProcessed[]
 				for (EdgeAndVertices listEdges : edges) {
@@ -273,6 +273,7 @@ public class GraphCreate implements Graph {
 						}
 					}
 				}
+			}
 		}
 
 		// store the resulting list in a arrayList along with their
