@@ -139,15 +139,14 @@ public class GraphCreate implements Graph {
 		// Initialize min value
 		int min = Integer.MAX_VALUE, min_index = -1;
 
-		for (int v = 0; v < numberOfVertices; v++)
-			if (boolSet[v] == false && key[v] < min) {
-				min = key[v];
-				min_index = v;
+		for (int vertex = 0; vertex < numberOfVertices; vertex++)
+			if (boolSet[vertex] == false && key[vertex] < min) {
+				min = key[vertex];
+				min_index = vertex;
 			}
 
 		return min_index;
 	}
-
 	/**
 	 * Function to find the minimum spanning tree
 	 */
