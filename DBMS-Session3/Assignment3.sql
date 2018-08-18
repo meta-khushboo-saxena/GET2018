@@ -33,7 +33,7 @@ USE storefrontdatabase;
     
 # Q. Display top 20 Products which are ordered most in last 60 days along with numbers.
 
-    SELECT p.product_name, COUNT(i.product_id) AS productCount
+    SELECT p.product_name, COUNT(i.product_id) AS product_count
     FROM product as p
     INNER JOIN order_items i 
     ON p.id = i.product_id
@@ -41,7 +41,7 @@ USE storefrontdatabase;
     ON i.order_id = o.id
     WHERE o.order_date > CURDATE() - INTERVAL 60 DAY 
     GROUP BY p.id
-    ORDER BY productCount DESC
+    ORDER BY product_count DESC
     LIMIT 20;
     
 # Q. Display Monthly sales revenue of the StoreFront for last 6 months. It should display each month’s sale.
