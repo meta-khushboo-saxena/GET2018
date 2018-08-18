@@ -5,7 +5,7 @@ USE storefrontdatabase;
 CREATE VIEW order_information
 AS
 SELECT o.id AS order_id, p.id AS product_id, p.product_name, p.product_price, 
-       u.firstname,u.lastname, u.email, o.order_date, i.order_status
+       u.firstname AS user_firstname,u.lastname AS user_lastname, u.email, o.order_date, i.order_status
 FROM orders o
 INNER JOIN order_items i 
 ON o.id = i.order_id
