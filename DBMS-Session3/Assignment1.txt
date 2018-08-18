@@ -1,0 +1,9 @@
+Q - With respect to StoreFront application identify, 
+    apply and list the constraints you would apply on the columns for the tables created.
+
+       1> NOT NULL
+       3> PRIMARY KEY
+       4> FOREIGN KEY
+       5> UNIQUE
+       6> DEFAULT
+       7> CHECK
