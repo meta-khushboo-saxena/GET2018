@@ -1,128 +1,121 @@
-USE storefrontdb;   
-
+USE storefrontdatabase;   
+ 
 #table 1:
-CREATE TABLE User(
-	UserId int NOT NULL AUTO_INCREMENT,
-	User_firstname VARCHAR(100),
-  User_lastname VARCHAR(100),
-	Email VARCHAR(100),
-	Password VARCHAR(15),
-	DateOfBirth DATE,
-	Gender VARCHAR(20),
-	UNIQUE(Email),
-	PRIMARY KEY(UserId)
+CREATE TABLE user(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	firstname VARCHAR(100),
+        lastname VARCHAR(100),
+	email VARCHAR(100) UNIQUE NOT NULL,
+	password VARCHAR(15),
+	date_of_birth DATE,
+	gender VARCHAR(20) CHECK (gender IN ('male','female'))
     ); 
-
+    
 #table 2: 
-CREATE TABLE Contact(
-	ContactId int NOT NULL AUTO_INCREMENT,
-	Contact VARCHAR(20) NOT NULL,
-	UserId int,
-	PRIMARY KEY(ContactId),
- 	FOREIGN KEY (UserId) REFERENCES User(UserId) ON DELETE CASCADE
+CREATE TABLE contact(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	contact_number VARCHAR(20) NOT NULL,
+	user_id int,
+ 	FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
    );
 
 #table 3:
-CREATE TABLE Product(
-	ProductId int NOT NULL AUTO_INCREMENT,
-	Product_Name VARCHAR(100),
-	Product_Price int NOT NULL,
-	Product_Quantity int,
-	Product_Description VARCHAR(255),
-	Product_CategoryId int NOT NULL,
-	PRIMARY KEY(ProductId)
+CREATE TABLE product(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	product_name VARCHAR(100),
+	product_price int NOT NULL,
+	product_quantity int,
+	product_description VARCHAR(255)
     );
  
-
 #table 4:
-CREATE TABLE Image(
-	ImageId int NOT NULL AUTO_INCREMENT,
-	Image VARCHAR(100) NOT NULL, 
-	ProductId int,
-	PRIMARY KEY(ImageId),
- 	FOREIGN KEY (ProductId) REFERENCES Product(ProductId) ON DELETE CASCADE
+CREATE TABLE category(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	category_name VARCHAR(255), 
+	parent_id int,	
+  	FOREIGN KEY (parent_id) REFERENCES category(id) ON DELETE CASCADE
    );
    
-#table 5:
-CREATE TABLE Category(
-	CategoryId int NOT NULL AUTO_INCREMENT,
-	Category_Name VARCHAR(255), 
-	Parent_CategryId int,
-	PRIMARY KEY(CategoryId),
-  FOREIGN KEY (Parent_CategryId) REFERENCES Category(CategoryId) ON DELETE CASCADE
+   #table 5:
+CREATE TABLE product_category(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	product_id int, 
+	category_id int,	
+   	FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
+	FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
    );
    
 #table 6:
-CREATE TABLE Orders(
-	OrderId int NOT NULL AUTO_INCREMENT,
-	ShopperId int,
-	Order_Quantity int,
-	Order_ShippingDate Date,
-  Order_Date Date NOT NULL,
-	PRIMARY KEY(OrderId),
-  FOREIGN KEY (ShopperId) REFERENCES User(UserId)
+CREATE TABLE image(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	image_name VARCHAR(100) NOT NULL, 
+	product_id int,
+ 	FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+   );
+
+#table 7:
+  CREATE TABLE address(
+	id int AUTO_INCREMENT PRIMARY KEY,
+  	address_line1 VARCHAR(255),
+	address_city VARCHAR(255),
+	address_state VARCHAR(255),
+  	address_pincode VARCHAR(6)
     );
     
-CREATE TABLE OrderItems(
-   OrderId INT,
-   ProductId INT,
-   Quantity INT,
-   OrderStatus VARCHAR(100),
-   FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+   #table 8: 
+   CREATE TABLE user_address(
+   id int AUTO_INCREMENT PRIMARY KEY,
+   user_id INT,
+   address_id INT,
+   FOREIGN KEY (user_id) REFERENCES user(id),
+   FOREIGN KEY (address_id) REFERENCES address(id)
    );
    
-#table 7:
-CREATE TABLE Payment(
-	PaymentId int NOT NULL AUTO_INCREMENT,
-	OrderId int,
-	Payment_mode int,
-	Payment_ShippingAddress VARCHAR(255),
-	PRIMARY KEY(PaymentId  ),
-  FOREIGN KEY (OrderId ) REFERENCES Orders(OrderId ) ON DELETE CASCADE
-    );
-
-#table 8:
-CREATE TABLE PaymentMode(
-	PaymentModeId int NOT NULL AUTO_INCREMENT,
-	PaymentMode_Name VARCHAR(255),
-  PRIMARY KEY(PaymentModeId)
+#table 9:
+CREATE TABLE orders(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	user_id int,
+	order_quantity int,
+  	order_date Date NOT NULL,
+  	order_address_id int,
+  	FOREIGN KEY (order_address_id) REFERENCES address(id),
+  	FOREIGN KEY (user_id) REFERENCES user(id)
     );
     
-#table 9:
-CREATE TABLE Address(
-	AddressId int NOT NULL AUTO_INCREMENT,
-  ShopperId int,	
-  Address_street VARCHAR(255),
-	Address_city VARCHAR(255),
-	Address_state VARCHAR(255),
-  Address_pincode VARCHAR(255),
-	PRIMARY KEY(AddressId),
-  FOREIGN KEY (ShopperId) REFERENCES User(UserId) ON DELETE CASCADE
-    );
-
+ #table 10:   
+CREATE TABLE order_items(
+   id int AUTO_INCREMENT PRIMARY KEY,
+   order_id INT,
+   product_id INT,
+   order_status VARCHAR(100) CHECK (order_status IN ('Shipped','Not Shipped','Canceled','Returned')),
+   order_shipping_date Date,
+   last_update_date Date,
+   FOREIGN KEY (product_id) REFERENCES product(id),
+   FOREIGN KEY (order_id) REFERENCES orders(id)
+   );
+  
 # Query to show all tables
 SHOW tables;
 
 # Query to Remove Product Table of storefrontdb
-DROP TABLE Image;
-DROP TABLE Product;
+
+DROP TABLE image;
+DROP TABLE product;
 
 #Query to Create Product Table in storefrontdb
 
-CREATE TABLE Product(
-	ProductId int NOT NULL AUTO_INCREMENT,
-	Product_Name VARCHAR(100),
-	Product_Price int NOT NULL,
-	Product_Quantity int,
-	Product_Description VARCHAR(255),
-	Product_CategoryId int NOT NULL,
-	PRIMARY KEY(ProductId)
+CREATE TABLE product(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	product_name VARCHAR(100),
+	Product_price int NOT NULL,
+	Product_quantity int,
+	Product_description VARCHAR(255),
+	Product_categoryId int NOT NULL
     );
-    
-  CREATE TABLE Image(
-	ImageId int NOT NULL AUTO_INCREMENT,
-	Image VARCHAR(100) NOT NULL, 
-	ProductId int,
-	PRIMARY KEY(ImageId),
- 	FOREIGN KEY (ProductId) REFERENCES Product(ProductId) ON DELETE CASCADE
-   );  
+ 
+CREATE TABLE image(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	image VARCHAR(100) NOT NULL, 
+	product_id int,
+ 	FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
+   );
