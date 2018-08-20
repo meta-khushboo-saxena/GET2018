@@ -15,6 +15,7 @@ CREATE TABLE city_detail
 CREATE TABLE zipcode
 (
     zipcode VARCHAR(6) PRIMARY KEY,
+    area_name VARCHAR(100) UNIQUE,
     city_detailid int NOT NULL,
     FOREIGN KEY (city_detailid) REFERENCES city_detail(id) ON DELETE CASCADE
 );
@@ -26,14 +27,14 @@ VALUES
 ('Jaipur', 'Rajasthan');
 
 INSERT INTO zipcode
-(zipcode, city_detailid)
+(zipcode, area_name, city_detailid)
 VALUES
-(313001, 1),
-(302019, 2),
-(302020, 2), 
-(302021, 2);
+(313001, "Shastri Circle", 1),
+(302019, "Mansarovar", 2),
+(302020, "India Gate", 2), 
+(302021, "Malvinagar", 2);
 
-SELECT z.zipcode, c.city_name, c.city_state
+SELECT z.area_name, c.city_name, c.city_state, z.zipcode
 FROM zipcode z
 INNER JOIN city_detail c
 ON c.id = z.city_detailid
