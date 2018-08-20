@@ -2,7 +2,7 @@ USE storefrontdatabase;
 
 # Q. Display Shopper’s information along with number of orders he/she placed during last 30 days.
     
-    SELECT u.id, u.firstname,u.lastname, u.email, u.date_of_birth, COUNT(o.user_id) AS no_of_orders
+    SELECT u.id, u.firstname, u.lastname, u.email, u.date_of_birth, COUNT(o.user_id) AS no_of_orders
     FROM user u
     INNER JOIN orders o 
     ON u.id = o.user_id
@@ -11,23 +11,16 @@ USE storefrontdatabase;
     
 # Q. Display the top 10 Shoppers who generated maximum number of revenue in last 30 days.
     
-    # View for calculating the total amount of each orders
-    CREATE VIEW total_order_amount 
-    AS
-    SELECT o.user_id, o.id AS order_id,o.order_date, SUM(p.product_price) AS total_amount
+    SELECT u.id, u.firstname, u.lastname, u.email, SUM(p.product_price) AS total_amount
     FROM order_items i
     INNER JOIN orders o
     ON i.order_id = o.id
     INNER JOIN product p
     ON p.id = i.product_id
-    GROUP BY i.order_id;
-    
-    SELECT u.id,u.firstname,u.lastname,u.email,SUM(t.total_amount) AS total_amount
-    FROM total_order_amount t
     INNER JOIN user u
-    ON u.id = t.user_id
+    ON u.id = o.user_id
     WHERE order_date > CURDATE() - INTERVAL 30 DAY 
-    GROUP BY t.user_id
+    GROUP BY o.user_id
     ORDER BY total_amount DESC
     LIMIT 10;
     
@@ -45,10 +38,14 @@ USE storefrontdatabase;
     LIMIT 20;
     
 # Q. Display Monthly sales revenue of the StoreFront for last 6 months. It should display each month’s sale.
-
-    SELECT MONTHNAME(order_date) AS month_name,SUM(total_amount) AS total_amount
-    FROM total_order_amount
-    WHERE order_date > CURDATE() - INTERVAL 6 MONTH 
+    
+    SELECT MONTHNAME(order_date) AS month_name, SUM(p.product_price) AS total_amount
+    FROM order_items i
+    INNER JOIN orders o
+    ON i.order_id = o.id
+    INNER JOIN product p
+    ON p.id = i.product_id
+    WHERE o.order_date > CURDATE() - INTERVAL 6 MONTH 
     GROUP BY MONTH(order_date);
     
 # Q. Mark the products as Inactive which are not ordered in last 90 days.
