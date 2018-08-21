@@ -28,7 +28,7 @@ USE storefrontdatabase;
     BEGIN
     DECLARE set_start_date Date;
     
-        if (start_date < end_date)
+        if (start_date <= end_date)
             then
                 return start_date;
                 
