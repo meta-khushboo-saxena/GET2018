@@ -23,7 +23,7 @@ SELECT number_of_orders(08,2018);
     
 # Q. Create a function to return month in a year having maximum orders. Year will be input parameter.
    
-   DELIMITER $$
+DELIMITER $$
 CREATE FUNCTION max_order(year int)
 RETURNS INT
 
@@ -31,17 +31,15 @@ BEGIN
 
     DECLARE max_order_month INT;
 
-    SELECT month INTO max_order_month
-    FROM (
-        SELECT MONTH(order_date) AS month,COUNT(MONTH(order_date)) AS count 
-        FROM orders 
-        WHERE YEAR(order_date) = year 
-        GROUP BY MONTH(order_date)
-        ORDER BY count DESC
-        ) max
-         LIMIT 1;
+    SELECT MONTH(order_date) AS month INTO max_order_month
+    FROM orders 
+    WHERE YEAR(order_date) = year 
+    GROUP BY MONTH(order_date)
+    ORDER BY COUNT(MONTH(order_date)) DESC
+    LIMIT 1;
         
     RETURN (max_order_month);
+    
 END$$
 
   SELECT max_order(2017);    
