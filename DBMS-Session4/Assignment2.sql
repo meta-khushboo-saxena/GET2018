@@ -7,13 +7,13 @@ USE storefrontdatabase;
     CREATE PROCEDURE average_sale(month int, year int)
     BEGIN
     
-    SELECT p.id,p.product_name,o.order_date, AVG(p.product_price) AS average_sale
+    SELECT p.id,p.product_name,o.order_date,i.order_status, AVG(p.product_price) AS average_sale
     FROM order_items i
     INNER JOIN orders o
     ON i.order_id = o.id
     INNER JOIN product p
     ON p.id = i.product_id
-    WHERE MONTH(o.order_date) = month AND YEAR(o.order_date) = year 
+    WHERE MONTH(o.order_date) = month AND YEAR(o.order_date) = year AND i.order_status <> 'Canceled' 
     GROUP BY i.product_id;
     
     END$$
