@@ -37,7 +37,7 @@ BEGIN
         FROM orders 
         WHERE YEAR(order_date) = year 
         GROUP BY MONTH(order_date)
-        ORDER BY month DESC
+        ORDER BY count DESC
         ) max
          LIMIT 1;
         
