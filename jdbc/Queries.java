@@ -14,7 +14,7 @@ public class Queries {
 	private final String insert_query = "INSERT INTO image (product_id, image_name) VALUES(?,?)";
 
 	private final String update_query = " UPDATE product SET product_state = 'Inactive' "
-			+ "WHERE id Not IN ("
+			+ "WHERE product_state = 'Active' AND id Not IN ("
 			+ "SELECT product_id FROM ( "
 			+ "SELECT DISTINCT(p.id) AS product_id FROM order_items i "
 			+ "INNER JOIN product p ON i.product_id = p.id "
