@@ -24,14 +24,29 @@ public class StoreFrontTest {
 	}
 	
 	@Test
-	public void getOrderDetail() throws ParseException {
+	public void getOrderDetail1() throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		assertEquals(1,(storefront.getOrderDetail(1).get(0).getOrderId()));
 		assertEquals(formatter.parse("2018-08-21"),(storefront.getOrderDetail(1).get(0).getOrderDate()));
 		assertEquals(1, storefront.getOrderDetail(1).get(0).getOrderId());
 		assertEquals(2000, storefront.getOrderDetail(1).get(0).getTotalAmount(),0);
 	}
+	
+	@Test
+	public void getOrderDetail2() {
+		assertEquals(0, storefront.getOrderDetail(2).size());
+	}
+	
+	@Test
+	public void getCheckValidate() {
+		assertTrue(storefront.validate(2));
+	}
 
+	@Test
+	public void getCheckInvalidUser() {
+		assertFalse(storefront.validate(442));
+	}
+	
 	@Test
 	public void testInsertImage() {
 
