@@ -27,7 +27,9 @@ public class StoreFrontTest {
 	public void getOrderDetail() throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		assertEquals(1,(storefront.getOrderDetail(1).get(0).getOrderId()));
-		assertEquals(formatter.parse("2018-08-18"),(storefront.getOrderDetail(1).get(0).getOrderDate()));
+		assertEquals(formatter.parse("2018-08-21"),(storefront.getOrderDetail(1).get(0).getOrderDate()));
+		assertEquals(1, storefront.getOrderDetail(1).get(0).getOrderId());
+		assertEquals(2000, storefront.getOrderDetail(1).get(0).getTotalAmount(),0);
 	}
 
 	@Test
