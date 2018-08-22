@@ -22,6 +22,30 @@ public class StoreFront {
 	private CategoryDetail categoryDetail;
 
 	/**
+	 * Function to check if the user exists or not
+	 * 
+	 * @param userId
+	 *            : id of the user
+	 * @return
+	 */
+	public boolean validate(int userId) {
+		try {
+			statement = connection.prepareStatement(queries.getSelect_user());
+			statement.setInt(1, userId);
+			resultSet = statement.executeQuery();
+			resultSet.last();
+			int rows = resultSet.getRow();
+			resultSet.beforeFirst();
+			if (rows == 0) {
+				return false;
+			}
+		} catch (SQLException ex) {
+			System.out.println("error");
+		}
+		return true;
+	}
+
+	/**
 	 * Function to fetch all orders detail of that user which are in shipped
 	 * state
 	 * 
@@ -30,24 +54,27 @@ public class StoreFront {
 	 * @return list of order detail
 	 */
 	public List<OrderDetail> getOrderDetail(int userId) {
-		System.out.println("dvsdv");
+
 		try {
-			statement = connection.prepareStatement(queries.getSelect_query());
-			statement.setString(1, "Shipped");
-			statement.setInt(2, userId);
-			resultSet = statement.executeQuery();
+			//if the user exists then execute the query
+			if (validate(userId)) {
+				statement = connection.prepareStatement(queries.getSelect_query());
+				statement.setString(1, "Shipped");
+				statement.setInt(2, userId);
+				resultSet = statement.executeQuery();
 
-			// Move the cursor to the next row, return false if no more row
-			while (resultSet.next()) {
-				orderDetail = new OrderDetail(resultSet.getInt("order_id"),
-						resultSet.getDate("order_date"),
-						resultSet.getDouble("total_amount"));
+				// Move the cursor to the next row, return false if no more row
+				while (resultSet.next()) {
+					orderDetail = new OrderDetail(resultSet.getInt("order_id"), resultSet.getDate("order_date"),
+							resultSet.getDouble("total_amount"));
 
-				// storing the data in the array list
-				listOfOrders.add(orderDetail);
-				System.out.println("id: " + orderDetail.getOrderId()
-						+ " date: " + orderDetail.getOrderDate()
-						+ " total_amount:" + orderDetail.getTotalAmount());
+					// storing the data in the array list
+					listOfOrders.add(orderDetail);
+					System.out.println("id: " + orderDetail.getOrderId() + " date: " + orderDetail.getOrderDate()
+							+ " total_amount:" + orderDetail.getTotalAmount());
+				}
+			} else {
+				System.out.println("Invalid User");
 			}
 		} catch (SQLException ex) {
 			System.out.println("error");
@@ -60,11 +87,11 @@ public class StoreFront {
 	 * technique
 	 * 
 	 * @param imageList
-	 *            : contain list of image deatails inserted by the user
+	 *            : contain list of image details inserted by the user
 	 * @return number of images inserted
 	 */
 	public int insertImage(List<Image> imageList) {
-		System.out.println("dvsdv");
+
 		int result = 0;
 		try {
 			connection.setAutoCommit(false);
@@ -116,24 +143,20 @@ public class StoreFront {
 	 */
 	public List<CategoryDetail> selectAndDispaly() {
 		try {
-			statement = connection.prepareStatement(queries
-					.getSelect_display_query());
+			statement = connection.prepareStatement(queries.getSelect_display_query());
 			resultSet = statement.executeQuery();
 
 			// Move the cursor to the next row, return false if no more row
 			while (resultSet.next()) {
 
-				categoryDetail = new CategoryDetail(resultSet.getInt("id"),
-						resultSet.getString("category_name"),
+				categoryDetail = new CategoryDetail(resultSet.getInt("id"), resultSet.getString("category_name"),
 						resultSet.getInt("count"));
 
 				// storing the data in the array list
 				listOfParentCategory.add(categoryDetail);
 
-				System.out.println("CategoryId: "
-						+ categoryDetail.getCategoryId() + " Category Name: "
-						+ categoryDetail.getParentCategoryName()
-						+ " No Of Childs:" + categoryDetail.getNoOfChild());
+				System.out.println("CategoryId: " + categoryDetail.getCategoryId() + " Category Name: "
+						+ categoryDetail.getParentCategoryName() + " No Of Childs:" + categoryDetail.getNoOfChild());
 			}
 		} catch (SQLException ex) {
 			System.out.println("error");
@@ -168,5 +191,6 @@ public class StoreFront {
 		System.out.println(storefront.getOrderDetail(1));
 		System.out.println(storefront.UpdateProduct());
 		storefront.selectAndDispaly();
+		System.out.println(storefront.validate(442));
 	}
 }
