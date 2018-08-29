@@ -1,21 +1,21 @@
 function validateAll(){
 	var flag = true;
-	if(validateName(document.getElementById('last_name'))){
+	if(!validateName(document.getElementById('first_name'))){
 		flag = false;
 	}
-	if(validateName(document.getElementById('last_name'))){
+	if(!validateName(document.getElementById('last_name'))){
 		flag = false;
 	}
-	if(validateContact()){
+	if(!validateContact()){
 		flag = false;
 	}
-	if(validateEmail()){
+	if(!validateEmail()){
 		flag = false;
 	}
-	if(validatePassword()){
+	if(!validatePassword()){
 		flag = false;
 	}
-	if(checkPasswordMatch()){
+	if(!checkPasswordMatch()){
 		flag = false;
 	}
 	return flag;
@@ -31,7 +31,7 @@ function validateName(name){
 		 }else if (name.value == document.getElementById('first_name').value && name.value == ""){
 			 document.getElementById('checkfirstname').innerHTML = "enter firstname";
 			 document.getElementById('checkfirstname').style.color = "red";
-		 }else{
+		 }else {
 			 document.getElementById('checklastname').innerHTML = "invalid lastname";
 			 document.getElementById('checklastname').style.color = "red";
 		 }
