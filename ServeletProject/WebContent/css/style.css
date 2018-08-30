@@ -1,0 +1,41 @@
+*{
+	margin : auto;
+	padding : 1px;
+}
+
+#navigator_table table{
+	 width : 90%;
+	 cellspacing : 20;
+}
+
+#navigator_table img{
+	 margin : 10px;
+}
+
+h1 {
+	font-style: oblique;
+	font-size: 45px;
+	font-family: cursive;
+	 margin-bottom: 30px;
+}
+
+input, select, textarea {
+	padding: 5px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	font-family: inherit;
+	font-size: 100%;
+	margin: 10px;
+}
+
+span {
+	width: 100%;
+	text-align: left;
+}
+
+form {
+	width: 32%;
+	border-radius: 15px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
