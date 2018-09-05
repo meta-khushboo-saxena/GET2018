@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id = "textEditor" class = "com.metacube.training.TextEditor" autowire = "byName">
+	</bean>
+	<bean id = "spellChecker1" class = "com.metacube.training.SpellChecker">
+		<property name = "word" value = "Good" />
+	</bean>
+		<bean id = "spellChecker2" class = "com.metacube.training.SpellChecker">
+		<property name = "word" value = "Weak" />
+	</bean>
+		<bean id = "spellChecker3" class = "com.metacube.training.SpellChecker">
+		<property name = "word" value = "Strong" />
+	</bean>
+</beans>
