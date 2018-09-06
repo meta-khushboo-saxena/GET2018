@@ -1,11 +1,18 @@
 package com.metacube.training;
 
+/**
+ * Text Editor class
+ */
 public class TextEditor {
 
 	private SpellChecker spellChecker1;
 	private SpellChecker spellChecker2;
 
-	// a constructor method to inject the dependency.
+	/**
+	 * constructor method to inject the dependency.
+	 * 
+	 * @param spellChecker1
+	 */
 	public TextEditor(SpellChecker spellChecker1) {
 		this.spellChecker1 = spellChecker1;
 	}
@@ -22,6 +29,9 @@ public class TextEditor {
 		return spellChecker2;
 	}
 
+	/**
+	 * Function to show the spellchecker
+	 */
 	public void spellCheck() {
 		spellChecker1.checkSpelling();
 		spellChecker2.checkSpelling();
