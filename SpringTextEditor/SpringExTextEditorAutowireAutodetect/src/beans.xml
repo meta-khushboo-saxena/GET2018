@@ -2,17 +2,16 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans>
 	<bean id="textEditor" class="com.metacube.training.TextEditor"
-		autowire="autodetect"> 
-		<property name="spellChecker2" ref="spellCheckerId2" />
-		<constructor-arg type = "SpellChecker" ref = "spellCheckerId1" />
+		autowire="autodetect">
+		<property name="spellChecker2" ref="spellChecker2" />
 	</bean>
 
-	<bean id="spellCheckerId2" class="com.metacube.training.SpellChecker">
-		<constructor-arg type="String" value="Strong" />
-	</bean>
-
-	<bean id="spellCheckerId1" class="com.metacube.training.SpellChecker">
+	<bean id="spellChecker1" class="com.metacube.training.SpellChecker">
 		<constructor-arg type="String" value="Weak" />
+	</bean>
+
+	<bean id="spellChecker2" class="com.metacube.training.SpellChecker">
+		<constructor-arg type="String" value="Strong" />
 	</bean>
 
 </beans>
