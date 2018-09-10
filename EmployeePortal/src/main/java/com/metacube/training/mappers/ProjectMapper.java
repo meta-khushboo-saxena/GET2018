@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import com.metacube.training.model.ProjectMaster;
 
+/**
+* Class to map the data from database to project model
+*/
 public class ProjectMapper implements RowMapper<ProjectMaster> {
 
 	public ProjectMaster mapRow(ResultSet resultSet, int i) throws SQLException {
