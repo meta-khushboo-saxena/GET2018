@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.metacube.training.dao.DAOInterface;
 import com.metacube.training.model.ProjectMaster;
 
+/**
+* Project Service class to provide interface between Controller and dao
+*/
 @Service
 public class ProjectServiceImpl implements ServiceInterface<ProjectMaster> {
 
@@ -38,8 +41,4 @@ public class ProjectServiceImpl implements ServiceInterface<ProjectMaster> {
 	public boolean create(ProjectMaster project) {
 		return projectDAOInterface.create(project);
 	}
-
-//	public boolean validateLogin(String email , String password) {
-//		return projectDAOInterface.validateLogin(email,password);
-//	}
 }
