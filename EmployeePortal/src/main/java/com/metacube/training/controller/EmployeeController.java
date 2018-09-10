@@ -41,8 +41,8 @@ public class EmployeeController {
 
 	/**
 	 * Function to validate login page
-	 * @param:email
-	 * @param:password
+	 * @param email
+	 * @param password
 	 * @return string
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -60,6 +60,12 @@ public class EmployeeController {
 		return view;
 	}
 
+	/**
+	 * Function to show profile page
+	 * @param model
+	 * @param email
+	 * @return string
+	 */
 	@RequestMapping(value = "/showProfile", method = RequestMethod.GET)
 	public String showProfile(Model model, @RequestParam("email") String email) {
 		model.addAttribute("employee",
@@ -73,7 +79,7 @@ public class EmployeeController {
 	 * 
 	 * @param employee
 	 * @param model
-	 * @return
+	 * @return view
 	 */
 	@RequestMapping(value = "/updateProfile", method = RequestMethod.POST)
 	public String showProfile(@ModelAttribute("employee") Employee employee,
@@ -83,6 +89,13 @@ public class EmployeeController {
 		return "employee/dashboard";
 	}
 
+	/**
+	 * Function to redirect to reset Password page
+	 * 
+	 * @param email
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
 	public String resetPasssword(Model model,
 			@RequestParam("email") String email) {
@@ -90,6 +103,15 @@ public class EmployeeController {
 		return "employee/resetPassword";
 	}
 
+	/**
+	 * Function to reset password
+	 * @param email
+	 * @param oldPassword
+	 * @param newPassword
+	 * @param confirmPassword
+	 * @param model
+	 * @return view
+	 */
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
 	public String resetPasssword(@RequestParam("email") String email,
 			@RequestParam("oldPassword") String oldPassword,
