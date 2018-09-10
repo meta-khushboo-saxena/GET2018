@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-
+/**
+* Common controller class
+*/
 public class WelcomeController {
 
 	@RequestMapping(value="/",method = RequestMethod.GET)
