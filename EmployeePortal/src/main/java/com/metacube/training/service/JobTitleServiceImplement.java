@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.metacube.training.dao.DAOInterface;
 import com.metacube.training.model.JobTitle;
 
+/**
+* Job Title Service class to provide interface between Controller and dao
+*/
 @Service
 public class JobTitleServiceImplement implements ServiceInterface<JobTitle> {
 
