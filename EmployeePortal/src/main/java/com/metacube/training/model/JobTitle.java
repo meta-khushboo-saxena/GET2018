@@ -1,5 +1,8 @@
 package com.metacube.training.model;
 
+/**
+* Class containing attributes of job title entity
+*/
 public class JobTitle {
 	private int jobCode;
 	private String jobTitle;
