@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.metacube.training.model.JobTitle;
 
+/**
+* Job Title dao class
+*/
 @Repository
 public class JobTitleDAO implements DAOInterface<JobTitle> {
 
