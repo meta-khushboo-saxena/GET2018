@@ -2,6 +2,9 @@ package com.metacube.training.model;
 
 import java.sql.Date;
 
+/**
+* Class containing attributes of the employee entity
+*/
 public class Employee {
 	private int code;
 	private String firstName;
