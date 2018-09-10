@@ -1,7 +1,9 @@
 package com.metacube.training.dao;
 
 import java.util.List;
-
+/**
+* Dao inteface class
+*/
 @SuppressWarnings("hiding")
 public interface DAOInterface<Object> {
 
