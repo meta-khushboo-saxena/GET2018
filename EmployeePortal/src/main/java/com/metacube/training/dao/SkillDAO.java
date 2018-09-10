@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.metacube.training.model.SkillsMaster;
 
+/**
+* Skill dao class
+*/
 @Repository
 public class SkillDAO implements DAOInterface<SkillsMaster> {
 
