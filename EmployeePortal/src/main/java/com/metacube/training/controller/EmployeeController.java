@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.metacube.training.model.Employee;
 import com.metacube.training.service.EmployeeServiceImplement;
 import com.metacube.training.service.ServiceInterface;
-
+/**
+* Employee controller class
+*/
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
