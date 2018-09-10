@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.metacube.training.mappers.ProjectMapper;
 import com.metacube.training.model.ProjectMaster;
 
+/**
+* Project Master dao class
+*/
 @Repository
 public class ProjectDAO implements DAOInterface<ProjectMaster> {
 
@@ -20,13 +23,13 @@ public class ProjectDAO implements DAOInterface<ProjectMaster> {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	//Queries for performing various operations on project
 	private final String SQL_INSERT_PROJECT = "insert into project_master(name, description, start_date, end_date, project_logo) values(?,?,?,?,?)";
 	private final String SQL_GET_ALL = "SELECT * FROM project_master ";
 	private final String SQL_FIND_PROJECT = "SELECT * FROM project_master WHERE project_id = ?";
 	private final String SQL_DELETE_PROJECT = "delete from project_master where project_id = ?";
 	private final String SQL_UPDATE_PROJECT = "UPDATE project_master SET name = ? , description = ? , start_date = ? , end_date = ? , project_logo = ?"
 			+ " WHERE project_id = ?";
-	//private final String SQL_CHECK_LOGIN = "SELECT * FROM project_master WHERE email = ?";
 	
 	@Override
 	public ProjectMaster getInfoById(int id) {
@@ -58,9 +61,6 @@ public class ProjectDAO implements DAOInterface<ProjectMaster> {
 				project.getDescription(), project.getStartDate(),
 				project.getEndDate(), project.getProjectLogo()) > 0;
 	}
-	
-//	public boolean validateLogin(String email , String password) {
-//		return jdbcTemplate.update(SQL_INSERT_PROJECT, email,password) > 0;
-//	}
+
 
 }
