@@ -8,6 +8,9 @@ import com.metacube.training.dao.DAOInterface;
 import com.metacube.training.dao.EmployeeDAO;
 import com.metacube.training.model.Employee;
 
+/**
+* Class to provide interface between controller and dao
+*/
 @Service
 public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 
@@ -46,10 +49,21 @@ public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 		return employeeDAO.create(employee);
 	}
 
+	/**
+	* Function to get the information of employee by email
+	* @params email
+	* @return employee
+	*/
 	public Employee getInfoByEmail(String email) {
 		return ((EmployeeDAO) employeeDAO).getInfoByEmail(email);
 	}
 
+	/**
+	* Function to get the information of employee by filter
+	* @params filter
+	* @params attributeName
+	* @return list of employee
+	*/
 	public List<Employee> searchBy(String filter, String attributeName) {
 		if (filter.equals("name")) {
 			return ((EmployeeDAO) employeeDAO).getInfoByName(attributeName);
@@ -63,6 +77,12 @@ public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 		}
 	}
 
+	/**
+	* Function to validate login of employee
+	* @params email
+	* @params password
+	* @return boolean
+	*/
 	public Boolean validateLogin(String email, String password) {
 		Employee employee = getInfoByEmail(email);
 		if (employee.getEmailId().equalsIgnoreCase(email)
@@ -72,6 +92,13 @@ public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 		return false;
 	}
 
+	/**
+	* Function to reset password
+	* @params email
+	* @params oldPassword
+	* @params newPassword
+	* @return boolean
+	*/
 	public Boolean resetPassword(String email, String oldPassword,
 			String newPassword) {
 
