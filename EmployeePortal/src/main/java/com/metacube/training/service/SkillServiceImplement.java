@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.metacube.training.dao.DAOInterface;
 import com.metacube.training.model.SkillsMaster;
 
+/**
+* Skill Service class to provide inteface between the controller and the dao
+*/
 @Service
 public class SkillServiceImplement implements ServiceInterface<SkillsMaster> {
 
