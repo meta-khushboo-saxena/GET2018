@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import com.metacube.training.model.Employee;
 
+/**
+* Class to map the data from database to employee model
+*/
 public class EmployeeMapper implements RowMapper<Employee> {
 
 	public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
