@@ -35,7 +35,7 @@ public class MvcWebConfig implements WebMvcConfigurer {
 	private ApplicationContext applicationContext;
 
 	/*
-	 * STEP 1 - Create SpringResourceTemplateResolver
+	 * Create SpringResourceTemplateResolver
 	 */
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {
@@ -48,7 +48,7 @@ public class MvcWebConfig implements WebMvcConfigurer {
 	}
 
 	/*
-	 * STEP 2 - Create SpringTemplateEngine
+	 * Create SpringTemplateEngine
 	 */
 	@Bean
 	public SpringTemplateEngine templateEngine() {
@@ -59,7 +59,7 @@ public class MvcWebConfig implements WebMvcConfigurer {
 	}
 
 	/*
-	 * STEP 3 - Register ThymeleafViewResolver
+	 * Register ThymeleafViewResolver
 	 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
