@@ -11,16 +11,23 @@ import org.springframework.stereotype.Repository;
 import com.metacube.training.mappers.EmployeeMapper;
 import com.metacube.training.model.Employee;
 
+/**
+* Employee dao class
+*/
 @Repository
 public class EmployeeDAO implements DAOInterface<Employee> {
 
 	private JdbcTemplate jdbcTemplate;
 
+	/**
+	* Function to initialise jdbcTemplate with dataSource
+	*/
 	@Autowired
 	public EmployeeDAO(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
+	
+	//Database queries
 	private final String SQL_INSERT_EMPLOYEE = " INSERT INTO employee(first_name, middle_name, last_name, dob, gender, email, contact, skype_id,"
 			+ "profile_picture, password) "
 			+ "VALUES "
@@ -87,6 +94,11 @@ public class EmployeeDAO implements DAOInterface<Employee> {
 				employee.getProfilePicture(), employee.getPassword()) > 0;
 	}
 
+	/**
+	* Function to get the information of the employee by email
+	* @param email
+	* @return employee
+	*/
 	public Employee getInfoByEmail(String email) {
 		Employee employee = jdbcTemplate.queryForObject(
 				SQL_GET_EMPLOYEE_BYEMAIL, new Object[] { email },
@@ -94,26 +106,53 @@ public class EmployeeDAO implements DAOInterface<Employee> {
 		return employee;
 	}
 
+	/**
+	* Function to get the information of the employee by name
+	* @param name
+	* @return list of employees
+	*/
 	public List<Employee> getInfoByName(String name) {
 		return jdbcTemplate.query(SQL_GET_EMPLOYEE_BY_NAME,
 				new Object[] { name }, new EmployeeMapper());
 	}
 
+	/**
+	* Function to get the information of the employee by project
+	* @param project
+	* @return list of employees
+	*/
 	public List<Employee> getInfoByProject(String project) {
 		return jdbcTemplate.query(SQL_GET_EMPLOYEE_BY_PROJECT,
 				new Object[] { project }, new EmployeeMapper());
 	}
 
+	/**
+	* Function to get the information of the employee by skills
+	* @param skills
+	* @return list of employees
+	*/
 	public List<Employee> getInfoBySkills(String skills) {
 		return jdbcTemplate.query(SQL_GET_EMPLOYEE_BY_SKILLS,
 				new Object[] { skills }, new EmployeeMapper());
 	}
 
+	/**
+	* Function to get the information of the employee by experience
+	* @param experience
+	* @return list of employees
+	*/
 	public List<Employee> getInfoByExperience(String experience) {
 		return jdbcTemplate.query(SQL_GET_EMPLOYEE_BY_EXPERIENCE,
 				new Object[] { experience }, new EmployeeMapper());
 	}
 
+	/**
+	* Function to reset the password
+	* @param email
+	* @param oldPassword
+	* @param newPassword
+	* @return boolean
+	*/
 	public boolean resetPassword(String email, String oldPassword,
 			String newPassword) {
 		return jdbcTemplate.update(SQL_UPDATE_PASSWORD, newPassword, email,
