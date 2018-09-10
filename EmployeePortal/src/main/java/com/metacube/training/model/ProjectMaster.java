@@ -1,6 +1,9 @@
 package com.metacube.training.model;
 import java.sql.Date;
 
+/**
+* Class containing attributes of ProjectMaster entity
+*/
 public class ProjectMaster {
 	private int projectId;
 	private String name;
