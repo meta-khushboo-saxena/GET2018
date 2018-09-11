@@ -99,19 +99,19 @@ public class AdminController {
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	public String adminAddEmployee(
-			@ModelAttribute("employee") Employee employee, Model model) {
+			@ModelAttribute("employee") Employee employee) {
 		Boolean status = false;
 		if (employee != null && employee.getCode() == 0) {
 			status = employeeService.create(employee);
 		} else {
 			employeeService.updateInfo(employee);
+			
 		}
 		if (status) {
 			return "admin/dashboard";
 		}
-		model.addAttribute("error", "error");
-		return "admin/addEmployee";
-
+		//model.addAttribute("error", "error");
+		return "redirect:showEmployee";
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class AdminController {
 	 * @param code
 	 * @return
 	 */
-	@RequestMapping(path = "/showEmployee/edit", method = RequestMethod.GET)
+	@RequestMapping(path = "/editEmployee", method = RequestMethod.GET)
 	public String editEmployee(Model model, @RequestParam("id") int code) {
 		model.addAttribute("employee", employeeService.getInfoById(code));
 		return "admin/addEmployee";
@@ -145,7 +145,7 @@ public class AdminController {
 	 * @param code
 	 * @return link to redirect
 	 */
-	@RequestMapping(path = "/showEmployee/delete", method = RequestMethod.GET)
+	@RequestMapping(path = "/deleteEmployee", method = RequestMethod.GET)
 	public String deleteEmployee(@RequestParam("id") int code) {
 		employeeService.deleteInfo(code);
 		return "redirect:/admin/showEmployee";
