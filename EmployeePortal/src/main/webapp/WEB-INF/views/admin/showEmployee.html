@@ -34,9 +34,9 @@
 					<td th:text="${employee.contact}">Contact</td>
 					<td th:text="${employee.skypeId}">Skype Id</td>
 
-					<td><a th:href="${'showEmployee/edit?id=' + employee.code}"
+					<td><a th:href="${'editEmployee?id=' + employee.code}"
 						class="btn btn-default">Edit</a></td>
-					<td><a th:href="${'showEmployee/delete?id=' + employee.code}"
+					<td><a th:href="${'deleteEmployee?id=' + employee.code}"
 						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</table>
