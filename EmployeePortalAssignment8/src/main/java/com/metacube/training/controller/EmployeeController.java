@@ -1,5 +1,7 @@
 package com.metacube.training.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,19 +9,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.metacube.training.model.Employee;
 import com.metacube.training.service.EmployeeServiceImplement;
 import com.metacube.training.service.ServiceInterface;
+
 /**
-* Employee controller class
-*/
+ * Employee controller class
+ */
 @Controller
+@SessionAttributes("email")
 @RequestMapping("/employee")
 public class EmployeeController {
 
 	@Autowired
 	ServiceInterface<Employee> employeeService;
+
+	@Autowired
+	HttpSession session;
 
 	/**
 	 * Function to redirect to dashboard
@@ -27,8 +35,8 @@ public class EmployeeController {
 	 * @return string
 	 */
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public String dashboard(@ModelAttribute("email") String email) {
-		return "employee/dashboard?email=" + email;
+	public String dashboard() {
+		return "employee/dashboard";
 	}
 
 	/**
@@ -43,6 +51,7 @@ public class EmployeeController {
 
 	/**
 	 * Function to validate login page
+	 * 
 	 * @param email
 	 * @param password
 	 * @return string
@@ -53,8 +62,9 @@ public class EmployeeController {
 		String view;
 		if (((EmployeeServiceImplement) employeeService).validateLogin(email,
 				password)) {
+			session.setAttribute("email", email);
 			view = "employee/dashboard";
-			model.addAttribute("email", email);
+			// model.addAttribute("email", email);
 		} else {
 			view = "employee/login";
 			model.addAttribute("error", "error");
@@ -64,15 +74,16 @@ public class EmployeeController {
 
 	/**
 	 * Function to show profile page
+	 * 
 	 * @param model
 	 * @param email
 	 * @return string
 	 */
 	@RequestMapping(value = "/showProfile", method = RequestMethod.GET)
-	public String showProfile(Model model, @RequestParam("email") String email) {
+	public String showProfile(Model model) {
 		model.addAttribute("employee",
 				((EmployeeServiceImplement) employeeService)
-						.getInfoByEmail(email));
+						.getInfoByEmail((String) session.getAttribute("email")));
 		return "employee/profile";
 	}
 
@@ -99,14 +110,13 @@ public class EmployeeController {
 	 * @return view
 	 */
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
-	public String resetPasssword(Model model,
-			@RequestParam("email") String email) {
-		model.addAttribute("email", email);
+	public String resetPasssword() {
 		return "employee/resetPassword";
 	}
 
 	/**
 	 * Function to reset password
+	 *
 	 * @param email
 	 * @param oldPassword
 	 * @param newPassword
@@ -115,20 +125,32 @@ public class EmployeeController {
 	 * @return view
 	 */
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-	public String resetPasssword(@RequestParam("email") String email,
+	public String resetPasssword(
 			@RequestParam("oldPassword") String oldPassword,
 			@RequestParam("newPassword") String newPassword,
 			@RequestParam("confirmPassword") String confirmPassword, Model model) {
-		String view;
-		if (confirmPassword.equals(newPassword)) {
-			((EmployeeServiceImplement) employeeService).resetPassword(email,
-					oldPassword, newPassword);
-			view = "employee/login";
-		} else {
-			view = "employee/resetPassword";
-			model.addAttribute("error", "error");
+		Boolean status = false;
+		if (confirmPassword.equals(newPassword) && oldPassword != ""
+				&& newPassword != "") {
+			status = ((EmployeeServiceImplement) employeeService)
+					.resetPassword((String)session.getAttribute("email"), oldPassword, newPassword);
+
 		}
-		return view;
+		if (status) {
+			return "employee/login";
+		} else {
+			model.addAttribute("error", "error");
+			return "employee/resetPassword";
+		}
 	}
-	
+
+	/**
+	 * Function to logout the user
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		return "employee/login";
+	}
 }

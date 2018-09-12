@@ -9,8 +9,8 @@ import com.metacube.training.dao.EmployeeDAO;
 import com.metacube.training.model.Employee;
 
 /**
-* Class to provide interface between controller and dao
-*/
+ * Class to provide interface between controller and dao
+ */
 @Service
 public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 
@@ -39,31 +39,31 @@ public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 
 	@Override
 	public boolean create(Employee employee) {
-		// Employee employeeDetail = getInfoByEmail(employee.getEmailId());
-		// System.out.println(employeeDetail.getEmailId());
-		// if
-		// (employeeDetail.getEmailId().equalsIgnoreCase(employee.getEmailId()))
-		// {
-		// return false;
-		// }
-		return employeeDAO.create(employee);
+		Employee employeeDetail = getInfoByEmail(employee.getEmailId());
+		if (employeeDetail != null) {
+			return false;
+		}
+		employeeDAO.create(employee);
+		return true;
 	}
 
 	/**
-	* Function to get the information of employee by email
-	* @params email
-	* @return employee
-	*/
+	 * Function to get the information of employee by email
+	 * 
+	 * @params email
+	 * @return employee
+	 */
 	public Employee getInfoByEmail(String email) {
 		return ((EmployeeDAO) employeeDAO).getInfoByEmail(email);
 	}
 
 	/**
-	* Function to get the information of employee by filter
-	* @params filter
-	* @params attributeName
-	* @return list of employee
-	*/
+	 * Function to get the information of employee by filter
+	 * 
+	 * @params filter
+	 * @params attributeName
+	 * @return list of employee
+	 */
 	public List<Employee> searchBy(String filter, String attributeName) {
 		if (filter.equals("name")) {
 			return ((EmployeeDAO) employeeDAO).getInfoByName(attributeName);
@@ -78,30 +78,31 @@ public class EmployeeServiceImplement implements ServiceInterface<Employee> {
 	}
 
 	/**
-	* Function to validate login of employee
-	* @params email
-	* @params password
-	* @return boolean
-	*/
+	 * Function to validate login of employee
+	 * 
+	 * @params email
+	 * @params password
+	 * @return boolean
+	 */
 	public Boolean validateLogin(String email, String password) {
-		Employee employee = getInfoByEmail(email);
-		if (employee.getEmailId().equalsIgnoreCase(email)
-				&& employee.getPassword().equals(password)) {
+		Employee employee = ((EmployeeDAO) employeeDAO).validateLogin(email,
+				password);
+		if (employee != null) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	* Function to reset password
-	* @params email
-	* @params oldPassword
-	* @params newPassword
-	* @return boolean
-	*/
+	 * Function to reset password
+	 * 
+	 * @params email
+	 * @params oldPassword
+	 * @params newPassword
+	 * @return boolean
+	 */
 	public Boolean resetPassword(String email, String oldPassword,
 			String newPassword) {
-
 		return ((EmployeeDAO) employeeDAO).resetPassword(email, oldPassword,
 				newPassword);
 

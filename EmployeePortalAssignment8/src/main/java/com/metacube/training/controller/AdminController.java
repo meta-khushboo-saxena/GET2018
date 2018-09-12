@@ -8,12 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.metacube.training.model.Employee;
-import com.metacube.training.model.JobTitle;
 import com.metacube.training.model.ProjectMaster;
-import com.metacube.training.model.SkillsMaster;
 import com.metacube.training.service.EmployeeServiceImplement;
 import com.metacube.training.service.ServiceInterface;
 
@@ -29,7 +25,7 @@ public class AdminController {
 
 	@Autowired
 	ServiceInterface<ProjectMaster> projectService;
-	
+
 	/**
 	 * Function to redirect to dashboard
 	 * 
@@ -61,8 +57,10 @@ public class AdminController {
 	 * @return string
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-		if (email.equalsIgnoreCase("admin@gmail.com") && password.equals("123456")) {
+	public String login(@RequestParam("email") String email,
+			@RequestParam("password") String password, Model model) {
+		if (email.equalsIgnoreCase("admin@gmail.com")
+				&& password.equals("123456")) {
 			return "admin/dashboard";
 		}
 		model.addAttribute("error", "error");
@@ -90,18 +88,19 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	public String adminAddEmployee(@ModelAttribute("employee") Employee employee) {
+	public String adminAddEmployee(
+			@ModelAttribute("employee") Employee employee, Model model) {
 		Boolean status = false;
 		if (employee != null && employee.getCode() == 0) {
 			status = employeeService.create(employee);
 		} else {
-			employeeService.updateInfo(employee);
+			status = employeeService.updateInfo(employee);
 		}
 		if (status) {
-			return "admin/dashboard";
+			return "redirect:showEmployee";
 		}
-		// model.addAttribute("error", "error");
-		return "redirect:showEmployee";
+		model.addAttribute("error", "error");
+		return "admin/addEmployee";
 	}
 
 	/**
@@ -161,7 +160,8 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/addProjects", method = RequestMethod.POST)
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	public String addProject(@ModelAttribute("project") ProjectMaster projectMaster) {
+	public String addProject(
+			@ModelAttribute("project") ProjectMaster projectMaster) {
 
 		if (projectMaster != null && projectMaster.getProjectId() == 0) {
 			projectService.create(projectMaster);
@@ -228,9 +228,13 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/searchEmployee", method = RequestMethod.POST)
-	public String searchEmployee(@RequestParam("attribute") String attributeName, @RequestParam("searchBy") String searchBy,
+	public String searchEmployee(
+			@RequestParam("attribute") String attributeName,
+			@RequestParam("searchBy") String searchBy,
 			@RequestParam("role") int role, Model model) {
-		model.addAttribute("employees", ((EmployeeServiceImplement) employeeService).searchBy(searchBy, attributeName));
+		model.addAttribute("employees",
+				((EmployeeServiceImplement) employeeService).searchBy(searchBy,
+						attributeName));
 		if (role == 1) {
 			return "admin/showEmployee";
 		} else
