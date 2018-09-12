@@ -1,0 +1,40 @@
+h1 {
+  font-style:  oblique;
+  font-size: 45px;
+  font-family: cursive;
+}
+
+form{
+	  background:  black;
+	  padding: 10px;
+	  width: 50%;
+	  opacity: 0.7;
+	  color: white;
+	  border-radius: 15px;
+	  margin-top: 40px;
+	  margin-bottom: 40px;
+}
+
+input, select, textarea{
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+	font-family: inherit;
+    font-size: 100%;
+	background-color: #333131;
+	color: white;
+}
+
+#submitbutton{
+	background-color: #d21818;
+	margin-top: 30px;
+	width:50%;	
+}
+
+span{
+	width: 100%;
+}
+
+th{
+	text-align: left;
+}

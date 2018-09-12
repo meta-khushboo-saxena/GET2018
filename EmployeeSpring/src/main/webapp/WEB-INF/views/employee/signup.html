@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SignUp</title>
+<link rel="shortcut icon" type="image/png" href="images/img2.PNG" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/headstyle.css" />
+<script src="javascript/validate.js" type="text/javascript"></script>
+
+</head>
+<body background="images/background.jpg">
+	<div class="col-md-12">
+		<div class="col-md-6">
+			<img id="logo" src="images/img2.PNG" alt="Logo">
+		</div>
+		<div class="col-md-6" style="margin-top: 50px; text-align: center;">
+			<a href="@{/employee/login}">Login</a> <a href="@{/employee/signUp}">SignUp</a>
+		</div>
+	</div>
+
+	<hr />
+	<br />
+	<div style="text-align: -webkit-center;">
+		<form action="SignUp" id="register_form"
+			onsubmit="return validateAll()">
+			<h1 align="center">SignUp</h1>
+			<br />
+			<table cellpadding="5">
+				<tr>
+					<th>First name :</th>
+					<td><input type='text' id='first_name' name='first_name'
+						title="First name should contains alphabets and minimum length should be 2"
+						placeholder="Enter First Name" onfocusout="validateName(this)" /></td>
+					<td><span id="checkfirstname"></span></td>
+				</tr>
+
+				<tr>
+					<th>Last name :</th>
+					<td><input type='text' id='last_name' name='last_name'
+						placeholder="Enter Last Name"
+						title="Last_name should contains alphabets and minimum length should be 2"
+						onfocusout="validateName(this)" /></td>
+					<td><span id="checklastname"></span></td>
+				</tr>
+
+				<tr>
+					<th>Age :</th>
+					<td><input type='number' id='age' name='age'
+						placeholder="Enter your Age" title="Enter age"
+						onfocusout="checkAge()" /></td>
+					<td><span id="checkAge"></span></td>
+				</tr>
+
+				<tr>
+					<th>DateOfBirth :</th>
+					<td><input type='date' id='dob' name='dob'
+						placeholder="Enter your date" title=" Enter your date of birth"
+						onfocusout="checkDob()" /></td>
+					<td><span id="checkDob"></span></td>
+				</tr>
+
+				<tr>
+					<th>Email :</th>
+					<td><input type='text' id='email' name='email'
+						placeholder="Enter your Email" title="Enter email"
+						onfocusout="validateEmail()" /></td>
+					<td><span id="checkemail"></span></td>
+				</tr>
+
+				<tr>
+					<th>Password :</th>
+					<td><input type='password' id='password' name='password'
+						placeholder="Enter your password"
+						title="Password should contains Uppercase, Lowercase, Numeric, Alphanumeric, and length minimum 8
+						"
+						onkeyup="validatePassword()" /></td>
+					<td><span id="checkpassword"></span></td>
+				</tr>
+
+				<tr>
+					<th>Confirm Password :</th>
+					<td><input type='password' id='confirm_password'
+						name='confirm_password' placeholder="Re-enter your password"
+						onkeyup="checkPasswordMatch()" /></td>
+					<td><span id="checkconfirmpassword"></span></td>
+				</tr>
+
+				<tr>
+					<th>Contact No. :</th>
+					<td><input type='text' id='contact' name='contact'
+						placeholder="Contact should contain digits with length min 8"
+						onfocusout="validateContact()" /></td>
+					<td><span id="checkcontact"></span></td>
+				</tr>
+
+				<tr>
+					<th>Company/Organisation :</th>
+					<td><select name="organisation" id="organisation">
+							<option value="0">Select</option>
+							<option value="Metacube">Metacube</option>
+							<option value="Infosys">Infosys</option>
+							<option value="John Deere">John Deere</option>
+							<option value="IBM">IBM</option>
+							<select></td>
+				</tr>
+
+				<tr>
+					<td><input type='submit' id="submitbutton" value='SignUp'
+						name="signup"></td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+</body>
+</html>
