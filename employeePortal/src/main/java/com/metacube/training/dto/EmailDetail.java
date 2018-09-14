@@ -6,7 +6,8 @@ public class EmailDetail {
 	private String lastname;
 	private String emailAddress;
 	private String password;
-
+	private String url;
+	
 	// Setters and Getters START
 	public String getFirstName() {
 		return firstName;
@@ -45,6 +46,14 @@ public class EmailDetail {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	// Setters and Getters End

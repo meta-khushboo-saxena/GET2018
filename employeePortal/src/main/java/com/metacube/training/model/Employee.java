@@ -38,6 +38,7 @@ public class Employee {
 	@Pattern(regexp = "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])\\w{8,})$", message = "Enter a valid password")
 	private String password;
 	private String skills;
+	private String token;
 
 	public int getCode() {
 		return code;
@@ -134,4 +135,13 @@ public class Employee {
 	public void setSkills(String skills) {
 		this.skills = skills;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
 }

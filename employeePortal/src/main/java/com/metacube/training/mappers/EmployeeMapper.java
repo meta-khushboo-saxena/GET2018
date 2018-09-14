@@ -26,6 +26,7 @@ public class EmployeeMapper implements RowMapper<Employee> {
 			employee.setSkypeId(resultSet.getString("skype_id"));
 			employee.setProfilePicture(resultSet.getString("profile_picture"));
 			employee.setPassword(resultSet.getString("password"));
+			employee.setToken(resultSet.getString("token"));
 		}
 		return employee;
 	}

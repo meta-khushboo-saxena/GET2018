@@ -38,6 +38,24 @@
 							or password !!</span>
 					</div>
 				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${message != null}" class="error">An email has
+							been sent to your existing email id</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${Updated != null}" class="error">Your password
+							has been updated</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${Expired != null}" class="error">Your Token has
+							been expired</span>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>
