@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Admin Login</title>
+</head>
+<body>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>Employee Login page</h1>
+			<form th:object="${loginDetail}" th:action="@{login}" method="post">
+
+				<div class="form-group">
+					<label for="username">Email</label>: <input type="text"
+						th:field="*{email}">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>: <input type="password"
+						th:field="*{password}">
+				</div>
+				<div class="row">
+					<a href="forgotPassword"><label for="Forgotpassword">Forgot
+							Password</label></a>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3">
+							<input type="submit" name="login-submit" id="login-submit"
+								class="form-control btn btn-info" value="Log In" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${error != null}" class="error">!! Wrong user
+							or password !!</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${message != null}" class="error">An email has
+							been sent to your existing email id</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${Updated != null}" class="error">Your
+							password has been updated</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<span th:if="${Expired != null}" class="error">Your Token
+							has been expired</span>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
