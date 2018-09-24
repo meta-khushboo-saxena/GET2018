@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${employee}" th:action="@{/employee/addEmployee}"
+		method="POST">
+		<table width="50%">
+			<input type="hidden" th:field="*{code}" />
+			<tr>
+				<td>
+					<h1>Add/Edit Employee</h1>
+				</td>
+			</tr>
+			<tr>
+				<td>First Name</td>
+				<td><input type="text" th:field="*{firstName}"></td>
+				<td th:if="${#fields.hasErrors('firstName')}"
+					th:errors="*{firstName}">EmployeeCode Error</td>
+			</tr>
+			<tr>
+				<td>Middle Name</td>
+				<td><input type="text" th:field="*{middleName}"></td>
+				<td th:if="${#fields.hasErrors('middleName')}"
+					th:errors="*{middleName}">EmployeeCode Error</td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input type="text" th:field="*{lastName}"></td>
+				<td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">EmployeeCode
+					Error</td>
+			</tr>
+			<tr>
+				<td>DateOfBirth</td>
+				<td><input type="date" th:field="*{dob}" required></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td><input type="radio" th:field="*{gender}" value="Male">Male
+					<input type="radio" th:field="*{gender}" value="Female">Female
+				</td>
+			</tr>
+			<tr>
+				<td>Contact Number</td>
+				<td><input type="text" th:field="*{contact}"></td>
+				<td th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}">EmployeeCode
+					Error</td>
+			</tr>
+			<tr>
+				<td>EmailId</td>
+				<td><input type="text" th:field="*{emailId}" required></td>
+				<td th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}">EmployeeCode
+					Error</td>
+			</tr>
+			<tr>
+				<td>SkypeId</td>
+				<td><input type="text" th:field="*{skypeId}"></td>
+			</tr>
+			<tr>
+				<td>Profile Picture</td>
+				<td><input type="text" th:field="*{profilePicture}"></td>
+			</tr>
+			<tr>
+				<td th:if="*{code == 0}">Password</td>
+				<td th:if="*{code == 0}"><input type="password"
+					th:field="*{password}" required></td>
+				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">EmployeeCode
+					Error</td>
+			</tr>
+			<tr colspan="2">
+				<td><input type="submit" value="submit"></td>
+			</tr>
+		</table>
+	</form>
+	<div class="form-group">
+		<div class="row">
+			<span th:if="${error != null}" class="error">Email already
+				exists!!</span>
+		</div>
+	</div>
+</body>
+</html>
