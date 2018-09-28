@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Square</title>
+</head>
+<body>
+  <canvas id="square" width="300" height="300"></canvas>
+  <script>
+    var canvas = document.getElementById('square');
+    var context = canvas.getContext('2d');
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+    
+    context.fillStyle = "#166432";
+    context.fillRect(centerX,centerY,100,100);
+    
+  </script>
+</body>
+</html>      

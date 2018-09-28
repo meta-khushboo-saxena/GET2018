@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Plus</title>
+</head>
+<body>
+  <canvas id="plus" width="300" height="300"></canvas>
+  <script>
+    var canvas = document.getElementById('plus');
+    var context = canvas.getContext('2d');
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+    var radius = 50;
+
+    context.fillStyle = "#fcb03c";
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    context.fill();
+    
+    context.fillStyle = "#ffffff";
+    context.fillRect(140,110,20,80);
+    context.fillRect(110,140,80,20);
+
+  </script>
+</body>
+</html>      

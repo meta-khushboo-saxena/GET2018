@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Ring</title>
+</head>
+<body>
+  <canvas id="ring" width="300" height="300"></canvas>
+  <script>
+    var canvas = document.getElementById('ring');
+    var context = canvas.getContext('2d');
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+    var radius = 50;
+    
+    context.fillStyle = "#ffffff";
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    context.fill();
+    context.lineWidth = 10;
+    context.strokeStyle = "#982068";
+    context.stroke();
+    
+</script>
+</body>
+</html>      

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Circle</title>
+  </head>
+  <body>
+    <canvas id="circle" width="300" height="300"></canvas>
+    <script>
+      var canvas = document.getElementById('circle');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 50;
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = "#2e94d1";
+      context.fill();
+    </script>
+  </body>
+</html>      

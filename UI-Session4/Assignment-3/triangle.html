@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Triangle</title>
+</head>
+<body>
+  <canvas id="triangle" width="300" height="300"></canvas>
+  <script>
+    var canvas = document.getElementById('triangle');
+    var context = canvas.getContext('2d');
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+    
+    context.fillStyle = "#982068";
+    context.moveTo(150,100);
+    context.lineTo(200,200);
+    context.lineTo(100,200);
+    context.fill();
+    
+</script>
+</body>
+</html>      
