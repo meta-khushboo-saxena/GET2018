@@ -14,43 +14,17 @@ h1, h2, h3, h4, h5, h6 {
 .header-logo{
 	font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 	font-size: 2.25rem;			
-	color: #343a40;
 	text-decoration: none!important;
 }
 
-.nav-bar .nav{
-	padding: 0.75rem 0rem;
-	justify-content: space-around;
-}
-
-.cover{
-	color: white;
-	background-color: #343a40;
-	padding: 3rem;
-	border-radius: .25rem;
-	margin-bottom: 2rem;
-}
-
 .cover-heading{
-	font-size: 2.5rem;
-	font-style: italic;
+	font-size: 3rem;
 	font-weight: 300;
-}
-
-@media (min-width: 768px) {
-	.cover-heading {
-		font-size: 3rem;
-	}
 }
 
 .cover-content{
 	font-size: 1.25rem;
 	font-weight: 300;
-	margin-top: 1rem;
-}
-
-.blog-bottom{
-	margin-bottom: 4rem;
 }
 
 .blog-bottom .btn{
@@ -58,14 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-footer{
-	padding: 2.5rem 0;
-	color: #999;
-	text-align: center;
 	background-color: #f9f9f9;
-	border-top: .05rem solid #e5e5e5;
-}
-
-.post{
-	margin-bottom: 4rem;
 }
 
