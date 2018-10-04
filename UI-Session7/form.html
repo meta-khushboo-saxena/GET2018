@@ -1,0 +1,116 @@
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <title>
+            Form
+        </title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="script/script.js"></script>
+        <script src="script/onchangeScript.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <form action="details.html" id="form" method="post">
+             <h1>Contact Us Today!</h1>
+             <div class="form-container" id="form_container">
+                <div class="row">
+                    <div class="label">
+                        <label>First name</label>
+                    </div>
+
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" title="Enter your first name" autofocus > 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label">
+                        <label>Last name</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" title="Enter your last name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">
+                        <label>E-Mail</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="email" name="email" placeholder="E-Mail Address" title="Enter your email">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">
+                        <label>Phone #</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="phone" name="phone" placeholder="(845)555-1212" title="Enter your phone" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">
+                        <label>Address</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="address" name="address" placeholder="Address" title="Enter your Address">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">
+                        <label>City</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="content">
+                        <input type="text" id="city" name="city" placeholder="City" title="Enter your City">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">
+                        <label>State</label>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-list-ul"></i>
+                    </div>
+                    <div class="content">
+                        <select id="state" name="state">
+                            <option value ="">Please select your state</option>
+                            <option value ="Rajasthan">Rajasthan</option>
+                            <option value ="Haryana">Haryana</option>
+                            <option value ="Maharashtra">Maharashtra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="submit_container" class="row">
+                    <div id="btn">
+                        <button type="submit" id="submit" class="btn">Send &nbsp<i class="fa fa-paper-plane"></i> </button>
+                    </div> 
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

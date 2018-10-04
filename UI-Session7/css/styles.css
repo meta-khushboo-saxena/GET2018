@@ -1,0 +1,79 @@
+.container{
+	margin: auto;
+	width: 80%;
+	background-color: #e6e6e6;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.row{
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+}
+
+input, select, textarea , button{
+	width: 40%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	font-family: inherit;
+	font-size: 100%;
+	border: 1px solid #bab3b3;
+	background-color: whitesmoke;
+	font-weight: bold;
+}
+
+button{
+	width: auto;
+}
+
+input[type=radio]:valid {
+    width: auto;
+}
+
+.btn{
+	color: white;
+	background-color: orange;
+}
+
+.label{
+	width: 40%;
+	text-align: right;
+	padding-right: 6%;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+.content{
+	width: 50%;
+}
+
+.icon{
+	border: 1px solid #bab3b3;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+	color: gray;
+}
+
+#btn{
+	width: 166px;
+}
+
+#project_icon{
+	padding: 19px 15px;
+}
+
+.fa-phone{
+	transform: scaleX(-1);
+}
+
+#description{
+	height: 100%;
+}
