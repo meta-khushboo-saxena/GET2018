@@ -1,6 +1,5 @@
 
 var errorMap = new Map();
-
 window.onload=function(){
 	var formSubmit = document.getElementById('form');
 
@@ -25,6 +24,19 @@ function deleteEntry(key){
 }
 
 function validateAll(event){
+
+	var form = document.getElementById('form_container');
+
+	if(form.contains(document.getElementById("zipcode_container"))) {
+		checkZipcode(event);
+	}
+	if(form.contains(document.getElementById("project_container"))) {
+		checkDescription(event);
+	}
+	if(form.contains(document.getElementById("domain_container"))) {
+		checkDomain(event);
+	}
+
 	checkFirstName(event);
 	checkEmail(event);
 	checkPhone(event);
@@ -36,7 +48,7 @@ function validateAll(event){
 	if(errorMap.size > 0){
 		var allkeys = errorMap.keys();
 		for(var key of allkeys) {
-			message += "Name:" + key + " , Description: " + errorMap.get(key) + "\n";
+			message +=  key + " - " + errorMap.get(key) + "\n";
 		}
 		alert(message);
 	}else {
@@ -45,7 +57,7 @@ function validateAll(event){
 			if(document.getElementById("form").elements[i].value.length != 0){
 				localStorage.setItem(document.getElementById("form").elements[i].name,document.getElementById("form").elements[i].value);
 			}
-		}  
+		} 
 	}
 }
 
@@ -63,7 +75,6 @@ function checkFirstName(event) {
 	} else{
 		deleteEntry("FirstName");
 		firstName.style.borderColor = "green";
-		localStorage.setItem("FirstName", document.getElementById('first_name').value);
 	}
 }
 
