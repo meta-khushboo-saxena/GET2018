@@ -1,5 +1,6 @@
-
 var errorMap = new Map();
+var formData = [];
+
 window.onload=function(){
 	var formSubmit = document.getElementById('form');
 
@@ -53,11 +54,34 @@ function validateAll(event){
 		alert(message);
 	}else {
 		localStorage.clear();
-		for(var i=0;i<document.getElementById("form").elements.length;i++){
-			if(document.getElementById("form").elements[i].value.length != 0){
-				localStorage.setItem(document.getElementById("form").elements[i].name,document.getElementById("form").elements[i].value);
+		var form = document.getElementById("form");
+		for(var i=0;i<form.elements.length;i++){
+			if(form.elements[i].value.length != 0){
+				formData.push({
+					label : getLabelName(form.elements[i].name),
+					value : form.elements[i].value
+				});
 			}
 		} 
+		localStorage.setItem("form_data", JSON.stringify(formData));
+	}
+}
+
+function getLabelName(elementName) {
+	switch(elementName) {
+		case 'first_name' : return 'First name';
+		case 'last_name' : return 'Last name';
+		case 'email' : return 'Email';
+		case 'phone' : return 'Phone #';
+		case 'address' : return 'Address';
+		case 'city' : return 'City';
+		case 'state' : return 'State';
+		case 'zipcode' : return 'Zip Code';
+		case 'address' : return 'Address';
+		case 'website' : return 'Website or Domain name';
+		case 'hosting' : return 'Do you have Hosting?';
+		case 'description' : return 'Project Description';
+		default : return 'Other';
 	}
 }
 
@@ -67,7 +91,7 @@ function checkFirstName(event) {
 		errorMap.set("FirstName", "First Name is required");
 		firstName.style.borderColor = "red";
 		event.preventDefault();
-		
+
 	}else if (!(/^[a-zA-Z]{2,}$/.test(firstName.value))) {
 		errorMap.set("FirstName", "First Name is invalid");
 		firstName.style.borderColor = "red";
