@@ -1,6 +1,8 @@
 window.onload=function(){
+	
+	var formData = JSON.parse(localStorage.getItem("form_data"));
 
-	for (i = 0; i < localStorage.length; i++) {
+	for (var index = 0; index < formData.length - 1; index++) {
 
 		var container = document.getElementById('container');
 
@@ -11,13 +13,13 @@ window.onload=function(){
 		labelDiv.setAttribute('class', 'label');
 
 		var label = document.createElement("label");
-		label.innerHTML = localStorage.key(i);
+		label.innerHTML = formData[index].label;
 
 		var spanDiv = document.createElement("div");
 		spanDiv.setAttribute('class', 'content');
 
 		var span = document.createElement("span");
-		span.innerHTML = localStorage.getItem(localStorage.key(i));
+		span.innerHTML = formData[index].value;
 
 		labelDiv.appendChild(label);
 		spanDiv.appendChild(span);
