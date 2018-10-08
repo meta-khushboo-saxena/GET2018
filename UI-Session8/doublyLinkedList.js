@@ -75,12 +75,16 @@
     /**
      * Function to dsplay the data
      */
-    this.display = function(list) {
-        var currentNode = this.head;
-        while (currentNode != null) {
+      this.display = function(list) {
+        if(!this.isEmpty()){
+          var currentNode = this.head;
+          while (currentNode != null) {
             console.log(currentNode.data);
             currentNode = currentNode.next;
         }
+    }else {
+        console.log("List is empty");
     }
+}
 }
 
