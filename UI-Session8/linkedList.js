@@ -67,11 +67,15 @@ function LinkedList() {
      * Function to dsplay the data
      */
     this.display = function() {
+       if(!this.isEmpty()) {
         var currentNode = this.head;
         while (currentNode != null) {
             console.log(currentNode.data);
             currentNode = currentNode.next;
         }
+    }else {
+        console.log("List is empty");
     }
+}
 }
 
