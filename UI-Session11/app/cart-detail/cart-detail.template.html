@@ -7,7 +7,7 @@
          <tr>
           <th colspan="2">You have {{$ctrl.cartCount}} items in your shopping cart</th>
           <th colspan="1"></th>
-          <th colspan="1" class="d-flex justify-content-end pr-3"><button class="btn" ng-click="deleteAll()">Clear shopping cart</button></th>
+          <th colspan="1" class="d-flex justify-content-end pr-3"><button ng-if="$ctrl.items.length > 0" class="btn" ng-click="deleteAll()">Clear shopping cart</button></th>
       </tr>
       <tr>
           <th></th>
@@ -36,7 +36,7 @@
     <td colspan="3"></td>
     <td>${{data.total.amount}}</td>
 </tr>
-<tr>
+<tr ng-if="$ctrl.items.length > 0">
     <td colspan="4">
         <a class="btn btn-primary" href="#!/products/shipping">Check Out</a>
     </td>
