@@ -2,6 +2,15 @@
 	text-decoration: none;
 }
 
+.nav-bar{
+	height: 100%;
+	position: fixed !important;
+}
+
+.main{
+	margin-left: 225px;
+}
+
 h3 {
 	font-size: 20px;
 }
@@ -102,7 +111,7 @@ ul{
 	height: 211px;
 }
 
-.noti-icon-badge{
+.notification-icon-badge{
 	position: absolute;
 	top: -8;
 	right: 10;
@@ -114,11 +123,22 @@ ul{
 
 #lineChartContainer{
 	height: 411px;
-	 width: 100%;
+	width: 100%;
 }
 
-/*.noti-icon{
-	position: relative;
-	top: 8;
-	left: 10;
-}*/
+.notification-dropdown {
+	width: 300px;
+}
+
+p {
+	white-space: pre-wrap!important;
+}
+
+.notification-icon {
+	height: 40px;
+}
+
+.nav-content{
+	max-height: 554px;
+	overflow-y: scroll;
+}

@@ -10,7 +10,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-	<script src="script/script.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 	<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
@@ -20,14 +19,14 @@
 </head>
 <body> 
 	<div class = "container-fluid px-0 m-0 row">
-		<div class = "col-2 px-0">
+		<div class = "nav-bar col-md-2 px-0">
 			<div class = "my-4">
 				<h3 class="text-center py-2">
 					<i class="mdi mdi-assistant"></i>
 					<strong>ANNEX</strong>
 				</h3>   
 			</div>
-			<div>
+			<div class="nav-content">
 				<div class = "pt-4">
 					<div class="px-4 mb-4">
 						<span class = "p-4 text-muted">Main</span>
@@ -141,7 +140,7 @@
 				
 			</div>
 		</div>
-		<div class = "col-10 container-bg">
+		<div class = "main col-md-10 container-bg">
 			<div class = "row d-flex flex-row justify-content-between background-color p-3">
 				<div class = "col-2 m-2 border-0 text-white search-box">
 					<input class = "px-3 py-1 border-0 text-light" type = "text" placeholder="Search...">
@@ -174,47 +173,44 @@
 					<li class="list-inline-item dropdown notification-list">
 						<a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 							<i class="far fa-envelope fa-lg"></i>
-							<span class="badge badge-danger noti-icon-badge">5</span>
+							<span class="badge badge-danger notification-icon-badge">5</span>
 						</a>
-						<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
+						<div class="notification-dropdown dropdown-menu dropdown-menu-right p-0 mt-4">
 
-							<div class="dropdown-item noti-title">
-								<h5><span class="badge badge-danger float-right">745</span>Messages</h5>
+							<div class="dropdown-item container-background p-0">
+								<p class = "py-2 pl-4"><strong>Messages</strong><span class="badge badge-danger float-right mr-4">745</span></p>
 							</div>
 
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class=" col-md-2 p-0">
+									<img src="images/profile1.jpg" alt="user-img" class="img-fluid rounded-circle"> 
+								</div>
+								<div class=" col-md-10 pr-0">
+									<p class = "p-0 m-0"><b>Ram Sharma</b></p>
+									<p class="p-0 m-0 text-muted">Dummy text of the printing and typesetting industry.</p>
+								</div>
+							</a>
 							
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon">
-									<img src="./Annex - Responsive Bootstrap 4 Admin Dashboard_files/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle"> 
-								</div>
-								<p class="notify-details">
-									<b>Charles M. Jones</b>
-									<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
-								</p>
-							</a>
-
 							
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon">
-									<img src="./Annex - Responsive Bootstrap 4 Admin Dashboard_files/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle"> 
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class=" col-md-2 p-0">
+									<img src="images/profile3.jpg" alt="user-img" class="img-fluid rounded-circle"> 
 								</div>
-								<p class="notify-details">
-									<b>Thomas J. Mimms</b>
-									<small class="text-muted">You have 87 unread messages</small>
-								</p>
+								<div class="col-md-10 pr-0">
+									<p class = "p-0 m-0"><b>Ani Singh</b></p>
+									<p class="p-0 m-0 text-muted">You have 87 unread messages.</p>
+								</div>
 							</a>
 
-
-							<a href="#" class="dropdown-item notify-item">
-								<div class="notify-icon">
-									<img src="./Annex - Responsive Bootstrap 4 Admin Dashboard_files/avatar-4.jpg" alt="user-img" class="img-fluid rounded-circle"> 
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class="col-md-2 p-0">
+									<img src="images/profile4.jpg" alt="user-img" class="img-fluid rounded-circle"> 
 								</div>
-								<p class="notify-details">
-									<b>Luis M. Konrad</b>
-									<small class="text-muted">It is a long established fact that a reader will</small>
-								</p>
+								<div class="col-md-10 pr-0">
+									<p class = "p-0 m-0"><b>Ali Arora</b></p>
+									<p class="p-0 m-0 text-muted">It is a long established fact that a user will.</p>
+								</div>
 							</a>
-
 
 							<a href="#" class="dropdown-item notify-item">
 								View All
@@ -224,48 +220,47 @@
 					</li>
 
 					<li class="list-inline-item dropdown notification-list">
-						<a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+						<a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="http://mannatthemes.com/annex/vertical/index.html#" role="button" aria-haspopup="false" aria-expanded="false">
 							<i class="far fa-bell fa-lg"></i>
-							<span class="badge badge-success noti-icon-badge">23</span>
+							<span class="badge badge-success notification-icon-badge">23</span>
 						</a>
-						<div class="notification-dropdown dropdown-menu dropdown-menu-right dropdown-menu-lg">
+						<div class="notification-dropdown dropdown-menu dropdown-menu-right p-0 mt-4">
 							
-							<div class="dropdown-item noti-title">
-								<h5><span class="badge badge-danger float-right">87</span>Notification</h5>
+							<div class="dropdown-item container-background p-0">
+								<p class = "py-2 pl-4"><strong>Notification</strong><span class="badge badge-danger float-right mr-4">87</span></p>
 							</div>
 
-
-							<a href="#" class="dropdown-item d-flex flex-row">
-								<div class="notify-icon bg-primary rounded-circle p-2 m-2 col-md-2">
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class="notification-icon bg-primary rounded-circle p-2 col-2 text-center">
 									<i class="mdi mdi-cart-outline text-light"></i>
 								</div>
-								<div class="notify-details col-md-10 d-flex flex-column ">
-									<b>Your order is placed</b>
-									<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
+								<div class="col-10 pr-0">
+									<p class = "p-0 m-0"><b>Your order is placed</b></p>
+									<p class="p-0 m-0 text-muted">Dummy text of the printing and typesetting industry.</p>
 								</div>
 							</a>
 
-							<a href="#" class="dropdown-item d-flex flex-row">
-								<div class="notify-icon bg-primary rounded-circle p-2 m-2 col-md-2">
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class="notification-icon bg-success rounded-circle p-2 col-md-2 text-center">
 									<i class="mdi mdi-message text-light"></i>
 								</div>
-								<div class="notify-details col-md-10 d-flex flex-column ">
-									<b>Your order is placed</b>
-									<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
+								<div class="col-md-10 pr-0">
+									<p class = "p-0 m-0"><b>New message received</b></p>
+									<p class="p-0 m-0 text-muted">You have 87 unread messages.</p>
+								</div>
+							</a>
+							
+							<a href="#" class="py-2 dropdown-item d-flex flex-row">
+								<div class="notification-icon bg-warning rounded-circle p-2 col-md-2 text-center">
+									<i class="mdi mdi-glass-cocktail text-light"></i>
+								</div>
+								<div class="col-md-10 pr-0">
+									<p class = "p-0 m-0"><b>Your item is shipped</b></p>
+									<p class="p-0 m-0 text-muted">It is a long established fact that a user will.</p>
 								</div>
 							</a>
 
-							<a href="#" class="dropdown-item d-flex flex-row">
-								<div class="notify-icon bg-primary rounded-circle p-2 m-2 col-md-2">
-									<i class="mdi mdi-martini text-light"></i>
-								</div>
-								<div class="notify-details col-md-10 d-flex flex-column ">
-									<b>Your order is placed</b>
-									<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
-								</div>
-							</a>
-
-							<a href="#" class="dropdown-item notify-item">
+							<a href="#" class="py-2 dropdown-item notify-item">
 								View All
 							</a>
 
@@ -473,21 +468,21 @@
 					<div class="col-md-12 col-lg-6 col-xl-4">
 						<div class="card twitter mb-4">
 							<div class="card-body">
-								<div id="verticalCarousel" class="carousel slide vertical" data-ride="carousel">
-									<!-- Carousel items -->
+								<div class="carousel slide" data-ride="carousel">
+									
 									<div class="carousel-inner">
 										<div class="carousel-item active">
 											<div class="row d-flex justify-content-center text-center">
 												<div class="col-sm-12 carousel-icon">
 													<i class="fab fa-twitter fa-3x text-white pt-3"></i>
 												</div>
-												<div class="col-6 text-white">                                                                
+												<div class="col-6 text-white">    
 													<h2>54k</h2>
-													<p>Followers</p>                                                                
+													<p class="text-white">Followers</p>      
 												</div>
 												<div class="col-6 text-white">               
 													<h2>44k</h2>
-													<p>Tweets</p>             
+													<p class="text-white">Tweets</p> 
 												</div>
 											</div>
 										</div>
@@ -498,7 +493,7 @@
 													<i class="fab fa-twitter fa-3x text-white pt-3"></i>
 												</div>
 												<div class="col-sm-10 mx-auto text-white text-center">
-													<p>Lorem Ipsum is simply dummy text of the <span class="warning">#TWITTER</span> and typesetting industry. A description list is perfect for defining terms.</p>
+													<p class="text-white">Lorem Ipsum is simply dummy text of the <span class="warning">#TWITTER</span> and typesetting industry. A description list is perfect for defining terms.</p>
 												</div>
 											</div>
 										</div>                                            
@@ -509,7 +504,7 @@
 
 						<div class="card facebook ">
 							<div class="card-body">
-								<div id="verticalCarousel2" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
 
 									<div class="carousel-inner">
 										<div class="carousel-item">
@@ -518,7 +513,7 @@
 													<i class="fab fa-facebook-f fa-3x text-white pt-3"></i>
 												</div>
 												<div class="col-sm-10 mx-auto text-white text-center">
-													<p>Lorem Ipsum is simply dummy text of the <mark> FACEBOOK </mark> and typesetting industry.</p>
+													<p class="text-white">Lorem Ipsum is simply dummy text of the <mark> FACEBOOK </mark> and typesetting industry.</p>
 												</div>
 											</div>
 										</div>
@@ -527,13 +522,13 @@
 												<div class="col-sm-12 carousel-icon">
 													<i class="fab fa-facebook-f fa-3x text-white pt-3"></i>
 												</div>
-												<div class="col-6">                                                                
+												<div class="col-6">                      
 													<h2>54k</h2>
-													<p class="">Followers</p>                                                               
+													<p class="text-white">Followers</p>  
 												</div>
-												<div class="col-6">                                                                
+												<div class="col-6">         
 													<h2>44k</h2>
-													<p class="">Posts</p>                                                                
+													<p class="text-white">Posts</p>         
 												</div>
 											</div>
 										</div>
@@ -580,7 +575,7 @@
 												<p class="text-white  font-12">Partly cloudy</p>
 												<p class="text-white font-12">15km/h - 37%</p>
 											</div>
-										</div><!-- End row -->
+										</div>
 									</div>
 									<div class="col-6 align-self-center">
 										<div class="row">
@@ -593,7 +588,7 @@
 												<h6 class="text-white mt-0 font-14">TUE</h6>
 												<i class="fas fa-cloud text-light"></i>
 												<h6 class="text-white font-14">32°<i class="wi-degrees"></i></h6>
-											</div>                                                                                                                                              
+											</div>                                           
 										</div>
 									</div>
 								</div>                           
@@ -629,11 +624,11 @@
 													<td>
 														<a href="#">Ruby T. Curd</a>
 													</td>
-													<td>                                                                
+													<td>                               
 														<img src="images/us_flag.jpg" alt="" style="width:30px">
 													</td>
 													<td>$100</td>
-													<td>10</td>                                   
+													<td>10</td>                         
 													<td>
 														<i class="mdi mdi-star text-warning"></i>
 														<i class="mdi mdi-star text-warning"></i>
