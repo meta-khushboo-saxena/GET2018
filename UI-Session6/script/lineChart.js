@@ -14,6 +14,7 @@ new Morris.Line({
   lineColors: [
   '#007bff','#e785da','#00bcd2'
   ],
+  hideHover:true, 
   xkey: 'y',
   ykeys: ['a', 'b' ,'c'],
   labels: ['Series A', 'Series B' , 'Series C']

@@ -12,11 +12,5 @@ new Morris.Donut({
     'rgb(99,104,226)',
     'rgb(194,197,224)',
     'rgb(67,163,237)'
-  ],
-
-  xkey: 'year',
- 
-  ykeys: ['value'],
-  
-  labels: ['Value']
+  ]
 });

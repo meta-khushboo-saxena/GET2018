@@ -17,10 +17,7 @@ new Morris.Area({
   yLabelMargin: 10,
   axes: false,
   pointSize: 0,
-  /*lineColors: [
-  'rgb(237,248,252)',
-  'rgb(216,245,243)'
-  ],*/
+  hideHover:true,
   grid: false,
   xkey: 'y',
   ykeys: ['a', 'b'],
