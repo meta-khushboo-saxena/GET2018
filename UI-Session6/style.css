@@ -142,3 +142,13 @@ p {
 	max-height: 554px;
 	overflow-y: scroll;
 }
+
+.progress-bar-container{
+	height:8px !important;
+}
+
+#donutChartContainer{
+	height: 370px; 
+	width: 100%;
+}
+
