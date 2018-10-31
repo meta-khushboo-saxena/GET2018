@@ -1,0 +1,28 @@
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit User</h5>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="user">
+          <div class="form-group">
+            <label for="user-name" class="col-form-label">User Name</label>
+            <input type="text" [(ngModel)]="user.name" name="username" class="form-control" id="user-name">
+          </div>
+          <div class="form-group">
+            <label for="user-contact" class="col-form-label">Contact Number</label>
+            <input type="text" [(ngModel)]="user.contact" name="contact" class="form-control" id="user-contact">
+          </div>
+          <div class="form-group">
+            <label for="user-city" class="col-form-label">City</label>
+            <input type="text" [(ngModel)]="user.city" name="city" class="form-control" id="user-city">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="editUser()">Save changes</button>
+      </div>
+    </div>
+  </div>

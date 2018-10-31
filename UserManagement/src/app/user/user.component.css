@@ -1,0 +1,12 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+  }
+
+  .search-box i{
+    position: absolute;
+    top: 6px;
+    left: 22px;
+  }
+
+ 

@@ -1,0 +1,29 @@
+<div class="row m-3 mr-5 my-5">
+
+  <div class="col-6">
+    <h2 class="text-left">Users</h2>
+  </div>
+
+  <div class="col-6 text-right">
+    <button type="button" class="btn btn-secondary mr-5 px-4" routerLink="/addUser">
+      Add User
+    </button>
+  </div>
+</div>
+<div class="row mx-4">
+  <div class="col-md-11 rounded search-box">
+    <input type='text' [(ngModel)]="searchKey" placeholder="Search users by name" class="border rounded col-md-12 p-2 px-5" />
+    <!-- (keyup)="search(searchKey.value)" -->
+    <i class="fa fa-search  p-2 text-muted"></i>
+  </div>
+  <div class="col-md-1">
+    <input type='submit' value="Search" class="btn btn-secondary px-4" />
+  </div>
+</div>
+<div class="row p-4">
+  <ul class="list-unstyled d-flex flex-row align-items-center flex-wrap col-md-12">
+    <li class="col-md-4 p-2" *ngFor="let user of users | filter: searchKey">
+      <app-user-card [user]="user"></app-user-card>
+    </li>
+  </ul>
+</div>
